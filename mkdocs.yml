@@ -1,0 +1,48 @@
+site_name: jftl-lang
+site_description: JFTL — JSON Fold Template Language, specification and guide
+site_url: https://jftl-lang.dev/
+repo_url: https://github.com/YOUR_ORG/jftl-lang
+repo_name: jftl-lang
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+    - search.suggest
+
+extra:
+  version:
+    provider: mike
+    default: latest
+
+nav:
+  - Home: index.md
+  - Overview: overview.md
+  - CLI: cli.md
+  - Cookbook: cookbook.md
+  - Specification:
+      - Namespacing the Definitions: spec/namespacing.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search

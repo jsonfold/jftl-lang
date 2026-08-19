@@ -1,0 +1,67 @@
+name: Build and deploy docs
+
+# Manual trigger by default — versions are deployed deliberately, not on
+# every push. Adjust the `on:` block once the release process solidifies
+# (e.g. trigger on a GitHub Release, or on push to a `spec/*` branch).
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Spec version to deploy (e.g. 0.4)"
+        required: true
+        default: "0.4"
+      alias:
+        description: "Alias to attach (e.g. latest). Leave blank for none."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install dependencies
+        run: pip install mkdocs-material mike
+
+      - name: Deploy version (no alias)
+        if: ${{ github.event.inputs.alias == '' }}
+        run: mike deploy --push --update-aliases "${{ github.event.inputs.version }}"
+
+      - name: Deploy version with alias
+        if: ${{ github.event.inputs.alias != '' }}
+        run: >
+          mike deploy --push --update-aliases
+          "${{ github.event.inputs.version }}" "${{ github.event.inputs.alias }}"
+
+      # CNAME lives at the ROOT of gh-pages (not inside a per-version
+      # subfolder mike manages), since that's where GitHub Pages looks for
+      # the custom-domain file. mike leaves unmanaged root files alone on
+      # subsequent deploys, so this only needs to actually change the file
+      # on a real update — but re-asserting it here is cheap insurance
+      # against it ever going missing.
+      - name: Ensure custom domain CNAME at gh-pages root
+        run: |
+          git fetch origin gh-pages
+          git worktree add /tmp/gh-pages gh-pages
+          echo "jftl-lang.dev" > /tmp/gh-pages/CNAME
+          cd /tmp/gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CNAME
+          git diff --cached --quiet || git commit -m "Ensure CNAME"
+          git push origin gh-pages
