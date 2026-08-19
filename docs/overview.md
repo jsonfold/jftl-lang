@@ -72,7 +72,7 @@ Template
 ```
 
 * **main** contains the transformation to execute.
-* **defs** Contain definitions for reusable components (functions, literals, ...)
+* **defs** Contain definitions for reusable components (functions, ...)
 * **datasets** contains reusable data bundled with the template.
 * **config** specifies template-wide options such as the default expression engine.
 
@@ -117,13 +117,13 @@ JFTL separates **expressions** from **statements**.
 
 ## Expressions
 
-Expressions evaluate to a value.
+Expressions are strings to evaluate to a value.
 
 Examples include:
 
 * navigation
 * interpolation
-* Python expressions
+* calculated expressions
 * literals
 
 ```json
@@ -262,12 +262,18 @@ See **interpolation.md**.
 
 JFTL supports multiple expression engines.
 
-| Engine | Purpose |
-|---------|---------|
-| Navigation | JSON navigation |
-| py | Safe Python expressions |
-| pyeval | Full Python `eval()` |
-| pyrun | Full Python statements |
+| Engine | Default | Purpose |
+|--------|---------|---------|
+| nav | ON | JSON navigation, lax handling of missing keys |
+| strict | ON | JSON navigation, with strict handling of missing keys |
+| py | ON | Safe Python expressions |
+| pyeval | OFF | Full Python `eval()` |
+| pyrun | OFF | Full Python statements |
+
+Note:
+
+* The `py` engine evaluates expression using `simpleeval`, using restricted set of operators to keep template execution safe.
+* The `pyeval` and `pyrun` are NOT enabled by default, and if enabled will allow template authors unrestricted access to files, resources on the executing server. **Use with care !**
 
 Expressions normally specify the engine explicitly.
 
