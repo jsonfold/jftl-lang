@@ -1,7 +1,6 @@
 # jftl-lang
 
-Specification and documentation for JFTL (JSON Fold Template Language),
-versioned independently of any particular engine implementation.
+Specification and documentation for JFTL (JSON Fold Template Language).
 
 ## License
 
@@ -38,33 +37,29 @@ one-time setup steps (not automated, do these once):
    finishes issuing the certificate (can take a few minutes after DNS
    propagates).
 
-The `CNAME` file itself is written to the root of the `gh-pages` branch by
-the deploy workflow (see `.github/workflows/docs.yml`) — it is intentionally
-**not** placed under `docs/`, since `mike` builds each spec version into
-its own subfolder and a `docs/CNAME` would end up nested per-version
-instead of at the root, where GitHub Pages actually requires it.
+The `CNAME` file lives under `docs/` and is copied to the site root
+automatically by `mkdocs build`/`mkdocs gh-deploy` — no extra step needed.
 
-## Versioned deploys
+## Deploying
 
-Docs are built and deployed per spec version using
-[`mike`](https://github.com/jimporter/mike), via the manually-triggered
-"Build and deploy docs" GitHub Actions workflow. The `latest` alias is
-updated deliberately, not automatically on every push.
-
-To deploy locally (requires push access to `gh-pages`):
+The site is a single tree (currently at spec version 0.4 — see
+`docs/index.md`). Deploy via the manually-triggered "Build and deploy
+docs" GitHub Actions workflow, or locally (requires push access to
+`gh-pages`):
 
 ```bash
-mike deploy --push --update-aliases 0.4 latest
+mkdocs gh-deploy --force
 ```
 
 ## Structure
 
 ```
 docs/
-  index.md          # landing page
-  overview.md        # docs #1 — concepts, template structure
-  cli.md              # docs #2 — jf-template usage
-  cookbook.md         # docs #3 — worked examples, recipes
-  spec/                # normative, versioned language specification
-    namespacing.md      # reserved namespaces (jftl./std.), resolution order
+  CNAME               # custom domain (jftl-lang.dev)
+  index.md            # landing page
+  overview.md          # docs #1 — concepts, template structure
+  cli.md                # docs #2 — jf-template usage
+  cookbook.md           # docs #3 — worked examples, recipes
+  spec/                  # normative language specification
+    namespacing.md        # reserved namespaces (jftl./std.), resolution order
 ```
