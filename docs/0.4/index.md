@@ -14,7 +14,5 @@ spec version (e.g. "compatible with jftl-lang 0.4").
 - **[CLI](cli.md)** — using `jf-template` to run templates from the
   command line.
 - **[Cookbook](cookbook.md)** — worked examples and recommended patterns.
-- **[Specification](spec/namespacing.md)** — the normative, versioned
-  language spec.
 
 Use the version selector (top of page) to switch between spec versions.
