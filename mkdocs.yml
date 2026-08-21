@@ -1,7 +1,7 @@
 site_name: jftl-lang
 site_description: JFTL — JSON Fold Template Language, specification and guide
 site_url: https://jftl-lang.dev/
-repo_url: https://github.com/yairlenga/jftl-lang
+repo_url: https://github.com/jsonfold/jftl-lang
 repo_name: jftl-lang
 
 theme:
