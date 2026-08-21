@@ -58,7 +58,7 @@ docs/
   CNAME               # custom domain (jftl-lang.dev)
   index.md            # landing page
   overview.md          # docs #1 — concepts, template structure
-  cli.md                # docs #2 — jf-template usage
+  CLI.md                # docs #2 — jf-template usage
   cookbook.md           # docs #3 — worked examples, recipes
   spec/                  # normative language specification
     namespacing.md        # reserved namespaces (jftl./std.), resolution order

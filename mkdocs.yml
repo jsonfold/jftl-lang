@@ -22,13 +22,23 @@ theme:
     - content.code.copy
     - search.suggest
 
+site_name: JFTL
+theme:
+  name: material
+
 nav:
-  - Home: index.md
-  - Overview: overview.md
-  - CLI: cli.md
+  - Overview: index.md
+  - Getting Started: quickstart.md
+  - Reference:
+      - Navigation: navigation.md
+      - Logic: logic.md
+      - Variables: variables.md
+      - User Variables: uservars.md
+      - Transformations: transform.md
+      - Expression Engines: expression.md
   - Cookbook: cookbook.md
-  - Specification:
-      - Namespacing the Definitions: spec/namespacing.md
+  - GitHub: https://github.com/jsonfold/jftl-lang
+
 
 markdown_extensions:
   - admonition
