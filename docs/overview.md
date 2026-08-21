@@ -72,9 +72,9 @@ Template
 ```
 
 * **main** contains the transformation to execute.
-* **defs** Contain definitions for reusable components (functions, ...)
 * **datasets** contains reusable data bundled with the template.
 * **config** specifies template-wide options such as the default expression engine.
+* **defs** Contain definitions for reusable components (functions, ...)
 
 See **template.md** for the complete reference.
 

@@ -1,8 +1,8 @@
 name: Build and deploy docs
 
-# Manual trigger — deploy deliberately, not on every push. Switch to
-# `on: push: branches: [main]` later if you want it automatic once the
-# doc-editing workflow settles down.
+# Manual only — deploy deliberately when you're in a good state, after
+# your own local testing (mkdocs serve). No automatic trigger on push;
+# run this from the Actions tab when ready.
 on:
   workflow_dispatch:
 
@@ -13,9 +13,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
