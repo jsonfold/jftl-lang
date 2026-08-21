@@ -60,6 +60,4 @@ docs/
   overview.md          # docs #1 — concepts, template structure
   CLI.md                # docs #2 — jf-template usage
   cookbook.md           # docs #3 — worked examples, recipes
-  spec/                  # normative language specification
-    namespacing.md        # reserved namespaces (jftl./std.), resolution order
 ```

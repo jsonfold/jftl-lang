@@ -7,7 +7,7 @@
 
 Avoid generic or reserved-sounding names for your own `defs` components —
 `macro`, `Macro`, `macro1`, `function`, `helper`, `data`, and similar. They
-are legal, but easy to confuse with [built-in names](spec/namespacing.md)
+are legal, but easy to confuse with [built-in names](variables.md)
 or with each other. Prefer descriptive names tied to what the component
 actually does.
 
