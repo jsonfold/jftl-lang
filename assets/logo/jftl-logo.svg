@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="116 201 1377 434">
+  <defs>
+    <linearGradient id="blueCyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1668ff"/>
+      <stop offset="0.55" stop-color="#18c9ff"/>
+      <stop offset="1" stop-color="#00e4d8"/>
+    </linearGradient>
+    <linearGradient id="cyanGreen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1ec9ff"/>
+      <stop offset="0.48" stop-color="#00ddd0"/>
+      <stop offset="0.76" stop-color="#28de73"/>
+      <stop offset="1" stop-color="#bdf000"/>
+    </linearGradient>
+    <linearGradient id="jftlGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1678ff"/>
+      <stop offset="0.28" stop-color="#14c7ff"/>
+      <stop offset="0.55" stop-color="#00d9c7"/>
+      <stop offset="0.78" stop-color="#36dc62"/>
+      <stop offset="1" stop-color="#d9ef00"/>
+    </linearGradient>
+    <linearGradient id="braceLeft" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#27e1ff"/>
+      <stop offset="0.58" stop-color="#159cff"/>
+      <stop offset="1" stop-color="#1261ff"/>
+    </linearGradient>
+    <linearGradient id="braceRight" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#d9ff31"/>
+      <stop offset="0.48" stop-color="#9bf11f"/>
+      <stop offset="1" stop-color="#62c91a"/>
+    </linearGradient>
+    <linearGradient id="iconBorder" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4d8cff"/>
+      <stop offset="0.45" stop-color="#17bbff"/>
+      <stop offset="0.78" stop-color="#52d391"/>
+      <stop offset="1" stop-color="#1f789b"/>
+    </linearGradient>
+    <radialGradient id="iconBg" cx="38%" cy="32%" r="90%">
+      <stop offset="0" stop-color="#061839"/>
+      <stop offset="0.7" stop-color="#03102b"/>
+      <stop offset="1" stop-color="#021023"/>
+    </radialGradient>
+    <radialGradient id="nodeYellow" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#fff365"/>
+      <stop offset="0.45" stop-color="#ffd500"/>
+      <stop offset="1" stop-color="#ff9c00"/>
+    </radialGradient>
+    <radialGradient id="nodeBlue" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#8af6ff"/>
+      <stop offset="0.45" stop-color="#22ccff"/>
+      <stop offset="1" stop-color="#0674ff"/>
+    </radialGradient>
+    <radialGradient id="nodePurple" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#d39cff"/>
+      <stop offset="0.45" stop-color="#8d4dff"/>
+      <stop offset="1" stop-color="#5d29d5"/>
+    </radialGradient>
+    <linearGradient id="sqGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9eff3d"/>
+      <stop offset="1" stop-color="#58c617"/>
+    </linearGradient>
+    <linearGradient id="sqOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd71f"/>
+      <stop offset="1" stop-color="#ff7a00"/>
+    </linearGradient>
+    <linearGradient id="sqPink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff8edb"/>
+      <stop offset="1" stop-color="#d92f80"/>
+    </linearGradient>
+
+    <linearGradient id="gradJ" x1="0" y1="0" x2="0.45" y2="1">
+      <stop offset="0" stop-color="#28ddff" />
+      <stop offset="0.55" stop-color="#12aaff" />
+      <stop offset="1" stop-color="#1268ff" />
+    </linearGradient>
+
+    <linearGradient id="gradF" x1="0" y1="0" x2="0.25" y2="1">
+      <stop offset="0" stop-color="#16e0e9" />
+      <stop offset="0.52" stop-color="#13ccef" />
+      <stop offset="1" stop-color="#0a9be9" />
+    </linearGradient>
+
+    <linearGradient id="gradT" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#13d9e7" />
+      <stop offset="0.48" stop-color="#00d8bd" />
+      <stop offset="1" stop-color="#22db6a" />
+    </linearGradient>
+
+    <linearGradient id="gradL" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#d9f23a" />
+      <stop offset="0.45" stop-color="#9bea18" />
+      <stop offset="1" stop-color="#b8e600" />
+    </linearGradient>
+  
+  </defs>
+
+  <g>
+    <rect x="122" y="207" width="460" height="422" rx="91"
+          fill="url(#iconBg)" stroke="url(#iconBorder)" stroke-width="4"/>
+    <rect x="127" y="212" width="450" height="412" rx="86"
+          fill="none" stroke="#0b4ca9" stroke-opacity=".45" stroke-width="2"/>
+
+    <!-- braces -->
+    <path d="M226 266
+             C190 266 190 296 190 328
+             L190 360
+             C190 393 177 407 151 416
+             L151 431
+             C177 440 190 454 190 487
+             L190 519
+             C190 551 190 582 226 582"
+          fill="none" stroke="url(#braceLeft)" stroke-width="27"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M478 266
+             C514 266 514 296 514 328
+             L514 360
+             C514 393 527 407 552 416
+             L552 431
+             C527 440 514 454 514 487
+             L514 519
+             C514 551 514 582 478 582"
+          fill="none" stroke="url(#braceRight)" stroke-width="27"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- top curved connector -->
+    <path d="M283 327 C320 327 321 377 361 377 C397 377 393 330 429 330"
+          fill="none" stroke="#22d8ff" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- middle connector / arrow, complete -->
+    <path d="M286 419 H392"
+          fill="none" stroke="#28d9ff" stroke-width="9"
+          stroke-linecap="round"/>
+    <path d="M392 401 L422 419 L392 437 Z"
+          fill="#28d9ff" stroke="#7af1ff" stroke-width="2"
+          stroke-linejoin="round"/>
+
+    <!-- bottom curved connector -->
+    <path d="M283 512 C322 512 319 466 360 466 C395 466 393 511 428 511"
+          fill="none" stroke="#22d8ff" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- circles -->
+    <circle cx="259" cy="326" r="27" fill="url(#nodeYellow)"
+            stroke="#fff36a" stroke-width="4"/>
+    <circle cx="259" cy="419" r="27" fill="url(#nodeBlue)"
+            stroke="#70ecff" stroke-width="4"/>
+    <circle cx="259" cy="512" r="27" fill="url(#nodePurple)"
+            stroke="#c692ff" stroke-width="4"/>
+    <circle cx="269" cy="316" r="5" fill="#fff" opacity=".95"/>
+    <circle cx="269" cy="409" r="5" fill="#fff" opacity=".9"/>
+    <circle cx="269" cy="502" r="5" fill="#fff" opacity=".9"/>
+
+    <!-- squares -->
+    <rect x="427" y="306" width="48" height="48" rx="4"
+          fill="url(#sqGreen)" stroke="#a9ff54" stroke-width="4"/>
+    <rect x="436" y="315" width="30" height="30" rx="2" fill="#6bc81e" opacity=".85"/>
+
+    <rect x="427" y="394" width="48" height="48" rx="4"
+          fill="url(#sqOrange)" stroke="#ffd329" stroke-width="4"/>
+    <rect x="436" y="403" width="30" height="30" rx="2" fill="#ff8c00" opacity=".9"/>
+
+    <rect x="427" y="487" width="48" height="48" rx="4"
+          fill="url(#sqPink)" stroke="#ff8bd3" stroke-width="4"/>
+    <rect x="436" y="496" width="30" height="30" rx="2" fill="#df3b83" opacity=".9"/>
+  </g>
+
+<g id="jftl-wordmark"
+   transform="translate(610 200) scale(1.7)">
+  <path id="glyph-J"
+        d="M 118 48 L 85 48 L 82 51 L 82 168 L 81 169 L 81 174 L 80 175 L 79 180 L 76 184 L 76 185 L 73 188 L 72 188 L 69 191 L 67 191 L 64 193 L 60 193 L 59 194 L 46 194 L 45 193 L 38 193 L 37 192 L 33 192 L 32 191 L 29 191 L 27 193 L 26 195 L 26 197 L 25 198 L 25 201 L 24 202 L 24 205 L 23 206 L 23 209 L 22 210 L 22 213 L 21 214 L 21 217 L 20 218 L 20 221 L 19 222 L 19 224 L 21 226 L 24 226 L 25 227 L 30 227 L 31 228 L 38 228 L 39 229 L 46 229 L 47 230 L 69 230 L 70 229 L 76 229 L 77 228 L 80 228 L 81 227 L 85 227 L 86 226 L 88 226 L 98 221 L 100 219 L 101 219 L 109 211 L 109 210 L 112 207 L 117 197 L 117 195 L 119 191 L 119 188 L 120 187 L 120 181 L 121 180 L 121 51 Z"
+        fill="url(#gradJ)"
+        stroke="#8cefff"
+        stroke-opacity="0.34"
+        stroke-width="1.25"
+        paint-order="stroke"/>
+
+  <path id="glyph-F"
+        d="M 257 49 L 255 48 L 176 48 L 175 49 L 172 49 L 171 50 L 169 50 L 168 51 L 166 51 L 162 53 L 159 56 L 158 56 L 151 63 L 150 66 L 147 70 L 147 72 L 145 76 L 145 79 L 144 80 L 144 226 L 146 228 L 180 228 L 182 225 L 182 158 L 183 157 L 247 157 L 248 155 L 248 125 L 246 123 L 243 123 L 242 122 L 183 122 L 182 121 L 182 94 L 183 93 L 183 91 L 184 89 L 187 86 L 189 85 L 192 85 L 193 84 L 256 84 L 258 81 L 258 51 Z"
+        fill="url(#gradF)"
+        stroke="#8cefff"
+        stroke-opacity="0.34"
+        stroke-width="1.25"
+        paint-order="stroke"/>
+
+  <path id="glyph-T"
+        d="M 275 48 L 272 51 L 272 82 L 275 84 L 312 84 L 314 86 L 314 226 L 316 228 L 318 228 L 319 229 L 347 229 L 351 226 L 351 85 L 352 84 L 393 84 L 395 82 L 395 51 L 394 49 L 392 48 Z"
+        fill="url(#gradT)"
+        stroke="#8cefff"
+        stroke-opacity="0.34"
+        stroke-width="1.25"
+        paint-order="stroke"/>
+
+  <path id="glyph-L"
+        d="M 413 48 L 410 51 L 410 203 L 411 204 L 411 207 L 412 208 L 412 210 L 414 214 L 416 216 L 416 217 L 421 222 L 422 222 L 424 224 L 428 226 L 430 226 L 431 227 L 434 227 L 435 228 L 440 228 L 441 229 L 514 229 L 517 226 L 517 195 L 515 193 L 455 193 L 453 192 L 449 188 L 449 186 L 448 185 L 448 52 L 445 48 Z"
+        fill="url(#gradL)"
+        stroke="#8cefff"
+        stroke-opacity="0.34"
+        stroke-width="1.25"
+        paint-order="stroke"/>
+</g>
+</svg>

@@ -1,4 +1,4 @@
-# `logic.md` — Logic Element Reference
+# Logic Element Reference
 
 <!-- LTeX: dictionary+=foreach dictionary+=Foreach -->
 <!-- cspell:words pyeval -->

@@ -1,6 +1,8 @@
 # JFTL Overview
 
-JFTL (JSON Flow Transformation Language) is a declarative language for transforming JSON documents.
+![JFTL — JSONFold Template Language](img/jftl-full.svg){ width="80%" }
+
+JFTL (JSON Flow Template Language) is a declarative language for transforming JSON documents.
 
 A JFTL template is itself valid JSON. Ordinary JSON remains unchanged, while dynamic behavior is introduced through a small set of language constructs such as navigation expressions, logic statements, interpolation, and expression engines.
 

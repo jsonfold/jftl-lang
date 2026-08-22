@@ -1,4 +1,4 @@
-# `navigation.md` — Navigation Expressions Reference
+# Navigation Expressions Reference
 
 ## Introduction
 

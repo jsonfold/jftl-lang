@@ -6,6 +6,8 @@ repo_name: jftl-lang
 
 theme:
   name: material
+  logo: img/jftl-logo.svg
+  favicon: img/jftl-icon.svg
   palette:
     - scheme: default
       toggle:
@@ -22,9 +24,8 @@ theme:
     - content.code.copy
     - search.suggest
 
-site_name: JFTL
-theme:
-  name: material
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Overview: index.md
@@ -36,11 +37,15 @@ nav:
       - User Variables: uservars.md
       - Transformations: transform.md
       - Expression Engines: expression.md
+      - Templates: template.md
+      - Functions: functions.md
+      - CLI: CLI.md
   - Cookbook: cookbook.md
   - GitHub: https://github.com/jsonfold/jftl-lang
 
 
 markdown_extensions:
+  - attr_list
   - admonition
   - pymdownx.details
   - pymdownx.superfences
