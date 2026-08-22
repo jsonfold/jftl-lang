@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="1536" height="1024" viewBox="0 0 1536 1024">
+     viewBox="104 197 1400 442">
   <defs>
     <linearGradient id="blueCyan" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#1668ff"/>
@@ -91,11 +91,9 @@
       <stop offset="0.45" stop-color="#9bea18" />
       <stop offset="1" stop-color="#b8e600" />
     </linearGradient>
+  
   </defs>
 
-  <!-- transparent canvas: intentionally no full-canvas background -->
-
-  <!-- icon -->
   <g>
     <rect x="122" y="207" width="460" height="422" rx="91"
           fill="url(#iconBg)" stroke="url(#iconBorder)" stroke-width="4"/>
@@ -166,21 +164,6 @@
     <rect x="436" y="496" width="30" height="30" rx="2" fill="#df3b83" opacity=".9"/>
   </g>
 
-  <!-- Main JFTL wordmark -->
-  <!-- 
-  <text x="617" y="580"
-        font-family="Arial Rounded MT Bold"
-        font-size="410"
-        font-weight="700"
-        letter-spacing="-20"
-        fill="url(#jftlGradient)"
-        transform="translate(617 0) scale(0.78 1) translate(-617 0)"
-        stroke="#52efff"
-        stroke-opacity=".16"
-        stroke-width="4"
-        paint-order="stroke">JFTL</text>
-  -->
-
 <g id="jftl-wordmark"
    transform="translate(610 200) scale(1.7)">
   <path id="glyph-J"
@@ -215,18 +198,4 @@
         stroke-width="1.25"
         paint-order="stroke"/>
 </g>
-
-
-  <!-- separator -->
-  <rect x="104" y="675" width="1400" height="6" rx="3"
-        fill="url(#cyanGreen)"/>
-
-  <!-- subtitle -->
-  <text x="102" y="797"
-        font-family="Arial, Helvetica, sans-serif"
-        font-size="92"
-        font-weight="500"
-        letter-spacing="1"
-        fill="url(#jftlGradient)"
-        transform="translate(102 0) scale(1.10 1) translate(-102 0)">JSONFold Template Language</text>
 </svg>
