@@ -67,15 +67,6 @@
       <stop offset="0" stop-color="#ff8edb"/>
       <stop offset="1" stop-color="#d92f80"/>
     </linearGradient>
-
-    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="6" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="2.5" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
   </defs>
 
   <!-- transparent canvas: intentionally no full-canvas background -->
@@ -97,7 +88,7 @@
              L190 519
              C190 551 190 582 226 582"
           fill="none" stroke="url(#braceLeft)" stroke-width="27"
-          stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)"/>
+          stroke-linecap="round" stroke-linejoin="round"/>
 
     <path d="M478 266
              C514 266 514 296 514 328
@@ -108,12 +99,12 @@
              L514 519
              C514 551 514 582 478 582"
           fill="none" stroke="url(#braceRight)" stroke-width="27"
-          stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)"/>
+          stroke-linecap="round" stroke-linejoin="round"/>
 
     <!-- top curved connector -->
     <path d="M283 327 C320 327 321 377 361 377 C397 377 393 330 429 330"
-          fill="none" stroke="#22d8ff" stroke-width="8" stroke-linecap="round"
-          filter="url(#softGlow)"/>
+          fill="none" stroke="#22d8ff" stroke-width="8" stroke-linecap="round"/>
+
     <!-- middle connector / arrow, complete -->
     <path d="M286 419 H392"
           fill="none" stroke="#28d9ff" stroke-width="9"
@@ -121,33 +112,33 @@
     <path d="M392 401 L422 419 L392 437 Z"
           fill="#28d9ff" stroke="#7af1ff" stroke-width="2"
           stroke-linejoin="round"/>
+
     <!-- bottom curved connector -->
     <path d="M283 512 C322 512 319 466 360 466 C395 466 393 511 428 511"
-          fill="none" stroke="#22d8ff" stroke-width="8" stroke-linecap="round"
-          filter="url(#softGlow)"/>
+          fill="none" stroke="#22d8ff" stroke-width="8" stroke-linecap="round"/>
 
     <!-- circles -->
     <circle cx="259" cy="326" r="27" fill="url(#nodeYellow)"
-            stroke="#fff36a" stroke-width="4" filter="url(#glow)"/>
+            stroke="#fff36a" stroke-width="4"/>
     <circle cx="259" cy="419" r="27" fill="url(#nodeBlue)"
-            stroke="#70ecff" stroke-width="4" filter="url(#glow)"/>
+            stroke="#70ecff" stroke-width="4"/>
     <circle cx="259" cy="512" r="27" fill="url(#nodePurple)"
-            stroke="#c692ff" stroke-width="4" filter="url(#glow)"/>
+            stroke="#c692ff" stroke-width="4"/>
     <circle cx="269" cy="316" r="5" fill="#fff" opacity=".95"/>
     <circle cx="269" cy="409" r="5" fill="#fff" opacity=".9"/>
     <circle cx="269" cy="502" r="5" fill="#fff" opacity=".9"/>
 
     <!-- squares -->
     <rect x="427" y="306" width="48" height="48" rx="4"
-          fill="url(#sqGreen)" stroke="#a9ff54" stroke-width="4" filter="url(#glow)"/>
+          fill="url(#sqGreen)" stroke="#a9ff54" stroke-width="4"/>
     <rect x="436" y="315" width="30" height="30" rx="2" fill="#6bc81e" opacity=".85"/>
 
     <rect x="427" y="394" width="48" height="48" rx="4"
-          fill="url(#sqOrange)" stroke="#ffd329" stroke-width="4" filter="url(#glow)"/>
+          fill="url(#sqOrange)" stroke="#ffd329" stroke-width="4"/>
     <rect x="436" y="403" width="30" height="30" rx="2" fill="#ff8c00" opacity=".9"/>
 
     <rect x="427" y="487" width="48" height="48" rx="4"
-          fill="url(#sqPink)" stroke="#ff8bd3" stroke-width="4" filter="url(#glow)"/>
+          fill="url(#sqPink)" stroke="#ff8bd3" stroke-width="4"/>
     <rect x="436" y="496" width="30" height="30" rx="2" fill="#df3b83" opacity=".9"/>
   </g>
 
@@ -162,8 +153,7 @@
         stroke="#52efff"
         stroke-opacity=".16"
         stroke-width="4"
-        paint-order="stroke"
-        filter="url(#softGlow)">JFTL</text>
+        paint-order="stroke">JFTL</text>
 
   <!-- separator -->
   <rect x="104" y="675" width="1235" height="6" rx="3"
@@ -176,6 +166,5 @@
         font-weight="500"
         letter-spacing="1"
         fill="url(#jftlGradient)"
-        transform="translate(102 0) scale(0.96 1) translate(-102 0)"
-        filter="url(#softGlow)">JSONFold Template Language</text>
+        transform="translate(102 0) scale(0.96 1) translate(-102 0)">JSONFold Template Language</text>
 </svg>
