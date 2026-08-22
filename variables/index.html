@@ -1,0 +1,2203 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="JFTL — JSON Fold Template Language, specification and guide">
+      
+      
+      
+        <link rel="canonical" href="https://jftl-lang.dev/variables/">
+      
+      
+        <link rel="prev" href="../logic/">
+      
+      
+        <link rel="next" href="../uservars/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/jftl-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Variables - jftl-lang</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#variablesmd-built-in-variables-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="jftl-lang" class="md-header__button md-logo" aria-label="jftl-lang" data-md-component="logo">
+      
+  <img src="../img/jftl-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jftl-lang
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Variables
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jsonfold/jftl-lang" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jftl-lang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../navigation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cookbook/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cookbook
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/jsonfold/jftl-lang" class="md-tabs__link">
+        
+  
+  
+    
+  
+  GitHub
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="jftl-lang" class="md-nav__button md-logo" aria-label="jftl-lang" data-md-component="logo">
+      
+  <img src="../img/jftl-logo.svg" alt="logo">
+
+    </a>
+    jftl-lang
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jsonfold/jftl-lang" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jftl-lang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations-current-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Limitations (current implementation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constant-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constant Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constant Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _missing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_missing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-sources-include" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common sources include:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_skip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _skip
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_skip">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _break
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_break">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _error
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_error">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-sources-include_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common sources include:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_die" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _die
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_die">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Template Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _input
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_externals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _externals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_top" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _top
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_top">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uservars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../expression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expression Engines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CLI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/jsonfold/jftl-lang" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations-current-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Limitations (current implementation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constant-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constant Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constant Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _missing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_missing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-sources-include" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common sources include:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_skip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _skip
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_skip">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _break
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_break">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _error
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_error">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-sources-include_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common sources include:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_die" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _die
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_die">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Template Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _input
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_externals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _externals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_top" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _top
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="_top">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="variablesmd-built-in-variables-reference"><code>variables.md</code> — Built-in Variables Reference<a class="headerlink" href="#variablesmd-built-in-variables-reference" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>JFTL provides a set of built-in variables and sentinel values available during template evaluation, organized into four categories based on scope — what determines when each value changes.</p>
+<ul>
+<li><strong>Constant</strong> — fixed for the life of the process; language-level sentinel values, identical across every template and every render.</li>
+<li><strong>Template</strong> — established once per render operation; constant within a single render, but different from one render to the next.</li>
+<li><strong>Scoped</strong> — updated when execution enters a new logic element, or a new component (<code>function</code>/<code>macro</code>) call.</li>
+<li><strong>Foreach</strong> — updated on every <code>foreach</code> iteration.</li>
+</ul>
+<p>The table below groups every built-in by category; each is covered in detail in the sections that follow, in the same order.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Category</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_missing</code></td>
+<td>Constant</td>
+<td>sentinel</td>
+<td>Represents the absence of a value.</td>
+</tr>
+<tr>
+<td><code>_skip</code></td>
+<td>Constant</td>
+<td>sentinel</td>
+<td>Omits the current generated item and continues processing.</td>
+</tr>
+<tr>
+<td><code>_break</code></td>
+<td>Constant</td>
+<td>sentinel</td>
+<td>Terminates the current <code>foreach</code> iteration.</td>
+</tr>
+<tr>
+<td><code>_error</code></td>
+<td>Constant</td>
+<td>sentinel</td>
+<td>Represents a processing error. Recoverable via <code>error</code>.</td>
+</tr>
+<tr>
+<td><code>_die</code></td>
+<td>Constant</td>
+<td>sentinel</td>
+<td>Represents an unrecoverable, fatal error. <strong>Not</strong> recoverable via <code>error</code> — aborts the render immediately.</td>
+</tr>
+<tr>
+<td><code>_input</code></td>
+<td>Template</td>
+<td>json</td>
+<td>Complete input document supplied to the render operation.</td>
+</tr>
+<tr>
+<td><code>_datasets</code></td>
+<td>Template</td>
+<td>namespace</td>
+<td>Namespace containing all datasets available during rendering.</td>
+</tr>
+<tr>
+<td><code>_externals</code></td>
+<td>Template</td>
+<td>namespace</td>
+<td><em>(Currently non-functional — see note below.)</em></td>
+</tr>
+<tr>
+<td><code>_top</code></td>
+<td>Template</td>
+<td>context</td>
+<td>Runtime context of the root frame.</td>
+</tr>
+<tr>
+<td><code>_data</code></td>
+<td>Scoped</td>
+<td>json</td>
+<td>Value most recently assigned by a <code>data</code> statement in the current logic element.</td>
+</tr>
+<tr>
+<td><code>_level</code></td>
+<td>Scoped</td>
+<td>int</td>
+<td>Nesting level of the current logic element or component call.</td>
+</tr>
+<tr>
+<td><code>_vars</code></td>
+<td>Scoped</td>
+<td>namespace</td>
+<td>Variables declared in the current logic-element scope.</td>
+</tr>
+<tr>
+<td><code>_global</code></td>
+<td>Scoped</td>
+<td>context</td>
+<td>Runtime context of the frame that first executed a <code>set</code> statement.</td>
+</tr>
+<tr>
+<td><code>_parent</code></td>
+<td>Scoped</td>
+<td>context</td>
+<td>Runtime context of the enclosing logic element.</td>
+</tr>
+<tr>
+<td><code>_</code></td>
+<td>Foreach</td>
+<td>json</td>
+<td>Current data. During <code>foreach</code>, contains the current source item. During <code>foreach.update</code>, contains the generated output for the current iteration.</td>
+</tr>
+<tr>
+<td><code>_key</code></td>
+<td>Foreach</td>
+<td>json</td>
+<td>Current array index, object key, or range value.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="known-limitations-current-implementation">Known Limitations (current implementation)<a class="headerlink" href="#known-limitations-current-implementation" title="Permanent link">&para;</a></h2>
+<p>Two behaviors are worth flagging up front, since both differ from what would otherwise be the intuitive reading of this page:</p>
+<ul>
+<li><strong>Unbound variables fail hard, not softly.</strong> Referencing a variable name that was never declared anywhere in the current frame chain (<code>$some_unset_name</code>) raises an unbound-variable error and aborts the render — it does <strong>not</strong> resolve to <code>Missing</code>. Only navigation failures (<code>$.foo</code> when <code>foo</code> doesn't exist, <code>$.arr[99]</code> out of range, etc.) resolve gracefully to <code>Missing</code>. See <code>_missing</code> below for the distinction in practice.</li>
+<li><strong>The <code>is</code> / <code>is not</code> condition suffix (<code>$foo is missing</code>, <code>$.foo is not null</code>, etc. — see <code>navigation.md</code>) is planned, not fully reliable yet.</strong> For a bare named-variable root with no further path segments (<code>$foo is missing</code>), the suffix is currently dropped silently at compile time, and the expression just returns the raw variable instead of testing it. It works correctly once at least one path segment follows (<code>$.foo is missing</code>, <code>$foo.bar is missing</code>), or when the root isn't a named variable at all (<code>$ is missing</code>, <code>$^ is missing</code>). Until this is fixed uniformly, prefer an explicit comparison — <code>$py=_ == _missing</code> — when the value you need to test is a bare named variable.</li>
+</ul>
+<hr />
+<h2 id="constant-values">Constant Values<a class="headerlink" href="#constant-values" title="Permanent link">&para;</a></h2>
+<p>Constant values are immutable singletons used by JFTL to control evaluation. They are not ordinary JSON values, and they are identical across every template and every render — fixed for the life of the process.</p>
+<h3 id="_missing"><code>_missing</code><a class="headerlink" href="#_missing" title="Permanent link">&para;</a></h3>
+<p>Represents the absence of a value.</p>
+<p>Unlike JSON <code>null</code>, <code>_missing</code> indicates that no value existed or no value was produced. In the final template result they get converted to null, but until that point, they remain distinct, making it possible to distinguish between the <code>null</code> value no-value present. They are similar to the JavaScript <code>undefined</code>. The <code>_missing</code> value is treated as false in conditions (similar to <code>null</code>),</p>
+<h4 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h4>
+<p>In the following example, both "missing" and "nonexisting" will show "Nothing" is the output. Both the <code>$.nonexisting</code> navigation and the explicit <code>_missing</code> variable resolve to the missing value, which is converted to the string "Nothing" by the <code>fallback</code> clause. Without the <code>fallback</code> clause, they <code>_missing</code> value will be converted to <code>null</code> in the final output.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"foo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span><span class="w"> </span><span class="nt">"null"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"missing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_missing"</span><span class="p">,</span><span class="w"> </span><span class="nt">"nonexisting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.nonexisting"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"fallback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nothing"</span><span class="w"> </span><span class="p">}}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">"foo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"null"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"missing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nothing"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"nonexisting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nothing"</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>Note: <code>"nonexisting": "$.nonexisting"</code> uses a <strong>navigation</strong> expression (an object-member lookup that doesn't exist) rather than a bare undefined variable name. Referencing an undefined variable directly (e.g. <code>$some_unset_var</code>) does <strong>not</strong> gracefully resolve to <code>Missing</code> in the current implementation — it raises an unbound-variable error that aborts the entire render. Use <code>check</code>/navigation for "might not be there" cases; reserve plain <code>$foo</code> for variables you know were declared.</p>
+</blockquote>
+<h4 id="common-sources-include">Common sources include:<a class="headerlink" href="#common-sources-include" title="Permanent link">&para;</a></h4>
+<ul>
+<li>navigation to a nonexistent object member;</li>
+<li>an array index outside the array bounds;</li>
+<li>navigation through a <code>null</code> or <code>missing</code> value;</li>
+<li>Failed <code>check</code> condition, which are used to guard complete statement;</li>
+<li>a <code>case</code> with no matching branch and no <code>else</code>;</li>
+<li>a <code>for</code> statement that iterate thru a <code>null</code> or <code>_missing</code> container;</li>
+<li>an explicit <code>$_missing</code>.</li>
+</ul>
+<p><code>Missing</code> is treated as false in JFTL conditions.</p>
+<p>A logic element may replace <code>Missing</code> using <code>fallback</code>.</p>
+<hr />
+<h3 id="_skip"><code>_skip</code><a class="headerlink" href="#_skip" title="Permanent link">&para;</a></h3>
+<p>Omits the current generated item.</p>
+<p>When returned from a <code>foreach</code> item's <code>out</code> or <code>case</code> expression. It is conceptually similar to <code>continue</code> in imperative languages.</p>
+<ul>
+<li>the item is not added to the result;</li>
+<li><code>update</code> is not executed;</li>
+<li>the item does not count toward <code>limit</code>;</li>
+<li>iteration continues with the next source item.</li>
+</ul>
+<p>When produced while generating an array or object outside <code>foreach</code>, the corresponding output element is omitted.</p>
+<h4 id="examples_1">Examples<a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h4>
+<p>In the following three examples, the entries with <code>_skip</code> value are removed from the final output. The <code>foreach</code> part start with the range 0, 1, 3, ..., 9, and then convert any number that is not divisible 3 to _skip, which is then removed from the output.
+<div class="highlight"><pre><span></span><code><span class="c1">// Template:</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py= _skip if _ % 3 != 0 else _"</span><span class="w"> </span><span class="p">}},</span>
+<span class="w">        </span><span class="nt">"array"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"$_skip"</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"$_skip"</span><span class="w"> </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"a"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"b"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_skip"</span><span class="p">,</span><span class="w"> </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"d"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">"e"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_skip"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Output:</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"array"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"a"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"d"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="_break"><code>_break</code><a class="headerlink" href="#_break" title="Permanent link">&para;</a></h3>
+<p>Terminates the current <code>foreach</code> iteration immediately.</p>
+<p>The current item is not added to the result, <code>update</code> is not executed, and no additional source items are processed.</p>
+<p><code>_break</code> is conceptually similar to <code>break</code> in an imperative language.</p>
+<h4 id="examples_2">Examples<a class="headerlink" href="#examples_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template:</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py= _break if _*_ &gt; 50 else _*_"</span><span class="w"> </span><span class="p">}},</span>
+<span class="w">        </span><span class="nt">"array"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"$_break"</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"$_break"</span><span class="w"> </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"a"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"b"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_break"</span><span class="p">,</span><span class="w"> </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"d"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">"e"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_break"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Output:</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w"> </span><span class="mi">49</span><span class="w"> </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"array"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"a"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>When produced while generating an array or object outside <code>foreach</code>, the created object will not include any additional elements. </p>
+<hr />
+<h3 id="_error"><code>_error</code><a class="headerlink" href="#_error" title="Permanent link">&para;</a></h3>
+<p>Represents a processing error.</p>
+<p>When an expression produces <code>_error</code>, normal evaluation stops and the logic element's <code>error</code> handler is evaluated, if one is present. Otherwise, the error propagates to the enclosing logic element.</p>
+<p>Unlike <code>Missing</code>, <code>_error</code> represents a processing failure rather than an absent value.</p>
+<p>Unlike <code>_skip</code> and <code>_break</code>, which only affect the array, object, or <code>foreach</code> they occur in, <code>_error</code> aborts the entire structure being built — the moment it's encountered, construction stops immediately, with no partial result, and the error propagates outward until something catches it.</p>
+<h4 id="examples_3">Examples<a class="headerlink" href="#examples_3" title="Permanent link">&para;</a></h4>
+<p>In the following example, <code>_error</code> is unhandled. Since <code>main</code> here is a plain object with no enclosing logic element, nothing intercepts the error, and the entire render fails — there is no partial output, not even <code>null</code>; the render itself does not succeed.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"array"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"$_error"</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="c1">// render fails; no JSON result is produced</span>
+<span class="p">[</span><span class="err">ERROR</span><span class="p">]</span><span class="w"> </span><span class="err">GENERIC</span><span class="mf">-E</span><span class="err">RROR</span><span class="p">:</span><span class="w"> </span><span class="err">U</span><span class="kc">ns</span><span class="err">peci</span><span class="kc">f</span><span class="err">ic</span><span class="w"> </span><span class="err">Error</span>
+</code></pre></div>
+<p>In the next example, the same failure occurs one level deeper — inside <code>data</code> — but this time the enclosing logic element has an <code>error</code> clause, which intercepts the error and supplies a replacement value instead. This mirrors how <code>fallback</code> recovers from <code>Missing</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"$_error"</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Could not process values"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="s2">"Could not process values"</span>
+</code></pre></div>
+<h4 id="common-sources-include_1">Common sources include:<a class="headerlink" href="#common-sources-include_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>an explicit <code>$_error</code>;</li>
+<li>a runtime exception inside a <code>$py=</code>, <code>$pyeval=</code>, or <code>$pyrun=</code> expression, converted internally into a notice;</li>
+<li>a <code>transform</code> given input of the wrong shape (for example, <code>merge</code> given a non-list);</li>
+<li>an unresolvable navigation, such as <code>$&lt;</code> used with no enclosing logic element.</li>
+</ul>
+<hr />
+<h3 id="_die"><code>_die</code><a class="headerlink" href="#_die" title="Permanent link">&para;</a></h3>
+<p>Represents an unrecoverable, fatal error.</p>
+<p><code>_die</code> looks similar to <code>_error</code> at first glance — both are error sentinels — but they behave very differently. <code>_error</code> is <em>recoverable</em>: an enclosing <code>error</code> clause can intercept it and supply a replacement value, exactly like <code>fallback</code> does for <code>Missing</code>. <code>_die</code> is <strong>not recoverable by any means</strong> — the moment it's produced, the render aborts immediately, unconditionally, bypassing every <code>error</code> clause between the point of failure and the top of the template.</p>
+<p>Use <code>_die</code> for conditions that mean the template itself cannot continue in any meaningful way — not for ordinary, expected failure cases, which should use <code>_error</code> (catchable) instead.</p>
+<h4 id="examples_4">Examples<a class="headerlink" href="#examples_4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.total"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This will never run — _die skips right past it"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"check"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Note there's no runtime example shown here producing <code>$_die</code> directly, since — being fatal by design — there's no template-visible "after" state to display: unlike <code>_error</code>'s second example above, no enclosing <code>error</code> clause, however close, can intercept it. Treat it as an escape hatch of last resort, not a routine control-flow tool.</p>
+<hr />
+<h2 id="template-values">Template Values<a class="headerlink" href="#template-values" title="Permanent link">&para;</a></h2>
+<p>Template values are initialized once at the start of a render operation and remain unchanged throughout that render — but differ from one render to the next.</p>
+<h3 id="_input"><code>_input</code><a class="headerlink" href="#_input" title="Permanent link">&para;</a></h3>
+<p>The complete input document supplied to the render operation.</p>
+<p>This is equivalent to the navigation root <code>$^</code>.</p>
+<p>Use <code>_input</code> from expression engines and <code>$^</code> from navigation expressions.</p>
+<p>Unlike <code>$</code> (current data), which changes as <code>data</code> and <code>foreach</code> reassign it at each nesting level, <code>_input</code>/<code>$^</code> always refers to the original document handed to <code>render()</code> — unaffected by how deep the current logic element is nested, or what <code>data</code>/<code>foreach</code> have done to <code>$</code> along the way.</p>
+<h3 id="examples_5">Examples<a class="headerlink" href="#examples_5" title="Permanent link">&para;</a></h3>
+<p>In the following example, the top-level <code>data</code> replaces <code>$</code> with the <code>orders</code> array, and a nested <code>foreach</code> replaces it again with each individual order. From inside that nested loop, <code>$</code> can no longer reach the original document — but <code>$^</code> still can, letting each order look up a value (the customer's <code>region</code>) that lives outside the array being iterated.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.orders"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"var"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$order.id"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$order.amount"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$^.customer.region"</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMEA"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMEA"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMEA"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Without <code>$^</code>, this value would be unreachable from inside the <code>foreach</code> — <code>$</code> no longer points at the top-level document once <code>data</code> and <code>foreach</code> have replaced it, and <code>$&lt;</code> (the <em>enclosing</em> logic element's current data) would only reach as far as the <code>orders</code> array, not the original document above it.</p>
+<hr />
+<h3 id="_datasets"><code>_datasets</code><a class="headerlink" href="#_datasets" title="Permanent link">&para;</a></h3>
+<p>Namespace containing all datasets available during rendering.</p>
+<p>Datasets may originate from:</p>
+<ul>
+<li>the template;</li>
+<li>the rendering environment;</li>
+<li>the render request.</li>
+</ul>
+<p>Datasets are accessed as object members.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>$_datasets.exchange_rates
+</code></pre></div>
+<hr />
+<h2 id="_externals"><code>_externals</code><a class="headerlink" href="#_externals" title="Permanent link">&para;</a></h2>
+<p><strong>Currently non-functional.</strong> This entry documents intent, not shipped behavior — do not rely on it yet.</p>
+<p><code>_externals</code> (plural, matching the naming convention used by the other namespace-shaped built-ins — <code>_datasets</code>, <code>_vars</code>) is the correct name: conceptually, it's the <code>_vars</code> of the root frame — a namespace of variables scoped the same way <code>_vars</code> scopes the current frame's own declarations, except sourced from the rendering environment rather than a template <code>set</code>. The design intent is a read-only namespace, constant throughout the render, distinct from <code>_global</code> (which is template-defined, not environment-supplied). The current registration, however, doesn't match that intent in <em>shape</em>: it's set to <code>top_vars,</code> — note the trailing comma, which makes it a one-element <strong>tuple</strong> wrapping <code>{"_datasets": ..., "_input": ...}</code>, not a dict of environment-supplied values at all. There's no working example to show — any use of <code>$_externals...</code> today will fail.</p>
+<hr />
+<h2 id="_top"><code>_top</code><a class="headerlink" href="#_top" title="Permanent link">&para;</a></h2>
+<p>Runtime context of the <strong>root frame</strong> — the frame created once at the very start of the render, before any logic element runs.</p>
+<p>This is <em>not</em> the same thing as "the top-level <code>set</code> scope" — every logic element, including the outermost one in <code>main</code>, creates its own child frame before executing, so a <code>set</code> at the top of your template never lands directly on <code>_top</code> itself. What <code>_top</code> reliably exposes is the root frame's own cached runtime state (such as <code>_level</code>, always <code>0</code>). For the original input document, prefer <code>$^</code> or <code>_input</code>; for a template-wide variable scope, see <code>_global</code> below.</p>
+<h3 id="examples_6">Examples<a class="headerlink" href="#examples_6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.items"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"top_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_top._level"</span><span class="p">,</span><span class="w"> </span><span class="nt">"current_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_level"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"top_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"current_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"top_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"current_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p><code>$_top._level</code> always reads <code>0</code>, the root frame's level, regardless of how deeply <code>$_level</code> (the <em>current</em> frame's level) is nested at the point of evaluation.</p>
+<hr />
+<h1 id="scoped-values">Scoped Values<a class="headerlink" href="#scoped-values" title="Permanent link">&para;</a></h1>
+<p>Scoped values are updated whenever execution enters a new logic element, or a new component (<code>function</code>/<code>macro</code>) call.</p>
+<h2 id="_data"><code>_data</code><a class="headerlink" href="#_data" title="Permanent link">&para;</a></h2>
+<p>The value most recently assigned by a <code>data</code> statement in the current logic element.</p>
+<p>Unlike <code>_</code>, which is reassigned on every <code>foreach</code> iteration, <code>_data</code> is set only when <code>data</code> runs — once, at Stage 2 of the logic element's evaluation — and is <strong>not</strong> touched by <code>foreach</code>, however many iterations follow. This makes <code>_data</code> useful for reaching back to the value <code>data</code> selected, from inside a loop where <code>_</code> (and <code>$</code>) now refer to the current item instead.</p>
+<p>If the current logic element has no <code>data</code> statement of its own, <code>_data</code> is inherited from the nearest enclosing logic element that set one, via normal variable lookup.</p>
+<h3 id="examples_7">Examples<a class="headerlink" href="#examples_7" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.customer"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.orders"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_data.id"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"customer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_data.name"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_"</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ada"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mi">75</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="nt">"customer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ada"</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="nt">"customer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ada"</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="nt">"customer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ada"</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p><code>data</code> selects the customer object once, before the loop starts. Inside <code>foreach</code>, <code>_</code> (and <code>$</code>) change on every iteration to the current order amount — but <code>$_data</code> still refers to the customer object throughout, letting every iteration reach <code>customer_id</code>/<code>customer_name</code> without needing <code>$&lt;</code> or a <code>var</code>-bound reference back to the outer scope.</p>
+<hr />
+<h2 id="_level"><code>_level</code><a class="headerlink" href="#_level" title="Permanent link">&para;</a></h2>
+<p>Current nesting level of the active logic element or component call.</p>
+<p>The root frame has level <code>0</code>. Each nested logic element, and each <code>function</code>/<code>macro</code> call, increases the level by one — component calls are not exempt, even though they can look like a single "step" in the template.</p>
+<p>This variable is primarily intended for diagnostics and advanced templates.</p>
+<hr />
+<h2 id="_vars"><code>_vars</code><a class="headerlink" href="#_vars" title="Permanent link">&para;</a></h2>
+<p>Namespace containing variables declared in the current logic-element scope.</p>
+<p>Unlike normal variable lookup, <code>_vars</code> does not search enclosing scopes — only the variables set directly in the current logic element are visible through it.</p>
+<blockquote>
+<p>Note: this built-in was previously referred to as <code>_local</code> in earlier drafts of this page; the name actually implemented is <code>_vars</code>.</p>
+</blockquote>
+<hr />
+<h2 id="_global"><code>_global</code><a class="headerlink" href="#_global" title="Permanent link">&para;</a></h2>
+<p><strong><code>_global</code> is the runtime context of whichever frame, at whatever depth, is the first to execute a <code>set</code> statement during this render — not necessarily <code>main</code>'s frame, and not the root frame (<code>_top</code>).</strong></p>
+<p>Once established, every descendant frame — including across <code>function</code>/<code>macro</code> calls — inherits the same <code>_global</code> reference, and no later <code>set</code> anywhere else can override it. If no logic element in the entire render ever uses <code>set</code>, <code>_global</code> is never established, and referencing it is an error.</p>
+<p>In practice, if your template's outermost logic element uses <code>set</code>, <code>_global</code> behaves exactly like "the top-level scope" most people expect. The distinction above only matters when <code>main</code> itself has no <code>set</code> block but something nested does — in that case <code>_global</code> tracks that nested frame instead, not <code>main</code>.</p>
+<h3 id="examples_8">Examples<a class="headerlink" href="#examples_8" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMEA"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.orders"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_"</span><span class="p">,</span><span class="w"> </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_global.region"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMEA"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMEA"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p><code>main</code>'s own <code>set</code> establishes it as the global frame. The nested logic element inside <code>foreach.out</code> reaches <code>region</code> via <code>$_global</code>, even though <code>data</code> has locally replaced <code>_</code>/<code>$</code> with the current order amount.</p>
+<hr />
+<h2 id="_parent"><code>_parent</code><a class="headerlink" href="#_parent" title="Permanent link">&para;</a></h2>
+<p>Runtime context of the enclosing logic element.</p>
+<p>Unlike <code>$&lt;</code>, which refers to the enclosing logic element's current data only, <code>_parent</code> exposes its entire runtime context — so any variable visible in the parent's scope, not just its current data, can be reached through it.</p>
+<h3 id="examples_9">Examples<a class="headerlink" href="#examples_9" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMEA"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.orders"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_"</span><span class="p">,</span><span class="w"> </span><span class="nt">"region_via_parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_parent.region"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">"region_via_parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMEA"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="nt">"region_via_parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMEA"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>The nested logic element's <code>$_parent</code> is the enclosing <code>foreach</code>'s own frame — the same frame where <code>main</code>'s <code>set</code> declared <code>region</code> — so <code>$_parent.region</code> reaches it directly, the same result <code>$_global.region</code> gave in the previous example. (They agree here because <code>main</code> happens to be both the enclosing frame <em>and</em> the global frame; that won't always be true at deeper nesting.)</p>
+<hr />
+<h1 id="scoping-rules">Scoping Rules<a class="headerlink" href="#scoping-rules" title="Permanent link">&para;</a></h1>
+<p>This section explains how variable lookup works across nested logic elements — the mechanism referenced from <code>navigation.md</code>'s <code>$foo</code>, <code>$%</code>, and <code>$&lt;</code> sections.</p>
+<p>Every logic element evaluates inside its own scope. When a logic element is nested inside another, its scope is a <strong>child</strong> of the enclosing element's scope.</p>
+<p><strong>Normal lookup</strong> (<code>$foo</code>, <code>$%.foo</code>) starts in the current scope and searches outward through each enclosing scope in turn, stopping at the first match:</p>
+<ul>
+<li>A variable declared with <code>set</code> in the current logic element is found immediately.</li>
+<li>A variable declared with <code>set</code> in an <em>enclosing</em> logic element is visible to nested elements, unless a nested element declares a variable with the same name — which shadows the outer one for the remainder of that nested scope.</li>
+<li>If no scope in the chain declares the variable, lookup fails with an unbound-variable error — it does <strong>not</strong> resolve to <code>Missing</code>. See the caution under <code>_missing</code> above.</li>
+</ul>
+<p>Three built-ins deliberately bypass this walk, each in a different way:</p>
+<ul>
+<li><strong><code>_vars</code></strong> narrows the search to the <em>current</em> scope only — no outward walk. A variable that exists but only in an enclosing scope will not appear in <code>_vars</code>.</li>
+<li><strong><code>_global</code></strong> jumps directly to the frame that first executed <code>set</code> (see <code>_global</code> above) — skipping every intermediate scope rather than walking through them.</li>
+<li><strong><code>_parent</code></strong> does not perform a lookup at all — it hands back the entire enclosing runtime context as a value, so a nested element can inspect (or navigate into) its parent's state directly rather than relying on name resolution.</li>
+</ul>
+<p>Use plain <code>$foo</code> / <code>$%.foo</code> for everyday variable access. Reach for <code>_vars</code>, <code>_global</code>, or <code>_parent</code> only when you specifically need to bypass the normal chain — for example, to guarantee you're reading the render-wide <code>set</code> scope (<code>_global</code>) rather than whatever a nearer scope happens to shadow it with.</p>
+<hr />
+<h2 id="foreach-values">Foreach Values<a class="headerlink" href="#foreach-values" title="Permanent link">&para;</a></h2>
+<h1 id="foreach-values_1">Foreach Values<a class="headerlink" href="#foreach-values_1" title="Permanent link">&para;</a></h1>
+<p>Foreach values are updated for each iteration.</p>
+<h2 id="_"><code>_</code><a class="headerlink" href="#_" title="Permanent link">&para;</a></h2>
+<p>Current data.</p>
+<p>Outside <code>foreach</code>, <code>_</code> contains the current data of the active logic element — this is what <code>data</code> assigns.</p>
+<p>Inside <code>foreach</code>, whether <code>_</code> tracks the source item depends on whether <code>var</code> is specified:</p>
+<ul>
+<li><strong>No <code>var</code> given</strong> — each source item becomes <code>_</code> (and <code>$</code>) directly for that iteration.</li>
+<li><strong><code>var</code> given</strong> — the source item is bound to <code>$var</code> instead; <code>_</code> and <code>$</code> are <em>not</em> updated to the item, and continue referring to whatever the enclosing logic element's current data was (e.g. whatever <code>data</code> set, or the parent's current data if no <code>data</code> was used).</li>
+</ul>
+<p>In both cases, once <code>out</code> is evaluated, <code>_</code> (and <code>$</code>) is updated to hold the <strong>result of <code>out</code></strong> — this is what <code>foreach.update</code> reads.</p>
+<p>Navigation expressions use <code>$</code> to reference the same value as <code>_</code>.</p>
+<p>Calling a component (<code>function</code>/<code>macro</code>, see <code>defs.md</code>) also affects <code>_</code>: both component types receive the caller's current data as their own <code>_</code>, but what <code>$&lt;</code> reaches from inside the component differs by <code>type</code> — see <code>navigation.md</code>'s "<code>$&lt;</code> across component calls" section for the distinction.</p>
+<h3 id="examples_10">Examples<a class="headerlink" href="#examples_10" title="Permanent link">&para;</a></h3>
+<p><strong><code>data</code> sets <code>_</code> for the whole logic element:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.customer"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_.name"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ada"</span><span class="p">,</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">"other"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="s2">"Ada"</span>
+</code></pre></div>
+<p>After <code>data</code>, <code>_</code> (and <code>$</code>) refer to the customer object — not the original input document. (Use <code>$^</code> to still reach the original input; see <code>_input</code>.)</p>
+<p><strong><code>foreach</code> with no <code>var</code> — the source item becomes <code>_</code> directly:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.scores"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py= _ * 2"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div>
+<p>No named variable is needed — each score is available as <code>_</code> (or <code>$</code>) for the duration of that iteration.</p>
+<p><strong><code>foreach</code> with <code>var</code> — <code>_</code> does <em>not</em> track the item, only <code>$var</code> does:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"history"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.label"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"var"</span><span class="p">:</span><span class="w"> </span><span class="s2">"score"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.scores"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py= score * 2"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"update"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"history"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py= history + [_]"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"round-1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Inside <code>out</code>, <code>$score</code> gives the source item (<code>1</code>, <code>2</code>, <code>3</code>) — <code>_</code> here still refers to <code>"round-1"</code> (from <code>data</code>), <em>not</em> the current score, because <code>var</code> was given. After <code>out</code> runs, <code>_</code> is reassigned to the <code>out</code> result (<code>2</code>, <code>4</code>, <code>6</code>), which is what <code>update</code> sees and accumulates into <code>history</code>. <code>history</code> here is an ordinary named variable, declared once via the enclosing <code>set</code> and reassigned each iteration by <code>update</code> — a more predictable pattern than reaching for <code>_vars</code>/<code>_local</code>-style namespace access from inside a <code>$py=</code> expression, which isn't guaranteed to reflect the current scope the way <code>$%</code>/<code>$_vars</code> do from navigation.</p>
+<hr />
+<h2 id="_key"><code>_key</code><a class="headerlink" href="#_key" title="Permanent link">&para;</a></h2>
+<p>Current iteration key.</p>
+<p>Its value depends on the iteration source:</p>
+<ul>
+<li>array — zero-based array index;</li>
+<li>object — member name;</li>
+<li>integer range — current integer value.</li>
+</ul>
+<p>The value is updated for every iteration, using the name given by <code>foreach.key</code>, or <code>_key</code> if none is specified.</p>
+<h3 id="examples_11">Examples<a class="headerlink" href="#examples_11" title="Permanent link">&para;</a></h3>
+<p><strong>Iterating an array — <code>_key</code> is the index:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.items"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_key"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"a"</span><span class="p">,</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p><strong>Iterating an object — <code>_key</code> is the member name:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Template</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.prices"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_key"</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Input</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"prices"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"USD"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">"EUR"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="c1">// Output</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"USD"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"EUR"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w"> </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h1 id="missing-versus-null">Missing versus <code>null</code><a class="headerlink" href="#missing-versus-null" title="Permanent link">&para;</a></h1>
+<p><code>Missing</code> and JSON <code>null</code> are distinct values.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Missing</code></td>
+<td>No value exists or no value was produced.</td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td>An explicit JSON value.</td>
+</tr>
+</tbody>
+</table>
+<p>Both are treated as false in JFTL conditions, but they remain semantically distinct throughout evaluation.</p>
+<hr />
+<h1 id="examples_12">Examples<a class="headerlink" href="#examples_12" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$_input.customer</code></td>
+<td>Access the <code>customer</code> field of the original input document.</td>
+</tr>
+<tr>
+<td><code>$_datasets.exchange_rates.USD</code></td>
+<td>Look up a value from a named dataset.</td>
+</tr>
+<tr>
+<td><code>$_vars.total</code></td>
+<td>Read <code>total</code> only if declared in the current logic element's own scope.</td>
+</tr>
+<tr>
+<td><code>$_global.session_id</code></td>
+<td>Read a value declared once at the frame that first ran <code>set</code>, from anywhere in the template.</td>
+</tr>
+<tr>
+<td><code>$_parent.customer</code></td>
+<td>Reach into the enclosing logic element's full runtime context.</td>
+</tr>
+<tr>
+<td><code>$_key</code></td>
+<td>Get the current index (array) or key (object) inside a <code>foreach</code>.</td>
+</tr>
+<tr>
+<td><code>$py=_ == _missing</code></td>
+<td>Reliably test whether the current value is <code>Missing</code> today — <code>$ is missing</code> will be the shorthand once the planned <code>is</code>/<code>is not</code> fix (see Known Limitations above) ships.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h1>
+<ul>
+<li><code>logic.md</code> — Logic elements and the execution pipeline; where <code>set</code>, <code>foreach</code>, and nested logic elements are defined.</li>
+<li><code>navigation.md</code> — <code>$</code>, <code>$foo</code>, <code>$%</code>, <code>$&lt;</code>, <code>$^</code> and how they map to the built-ins on this page, including how <code>$&lt;</code> behaves across <code>function</code>/<code>macro</code> component calls.</li>
+<li><code>defs.md</code> — Component (<code>function</code>/<code>macro</code>) definitions and calls.</li>
+<li><code>expression-engines.md</code> — <code>$py=</code>, <code>$pyeval=</code>, <code>$pyrun=</code>, and how built-in variables are exposed to each engine's evaluation namespace.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

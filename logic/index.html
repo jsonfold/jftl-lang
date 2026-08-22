@@ -1,0 +1,1901 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="JFTL — JSON Fold Template Language, specification and guide">
+      
+      
+      
+        <link rel="canonical" href="https://jftl-lang.dev/logic/">
+      
+      
+        <link rel="prev" href="../navigation/">
+      
+      
+        <link rel="next" href="../variables/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/jftl-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Logic - jftl-lang</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#logic-element-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="jftl-lang" class="md-header__button md-logo" aria-label="jftl-lang" data-md-component="logo">
+      
+  <img src="../img/jftl-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jftl-lang
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Logic
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jsonfold/jftl-lang" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jftl-lang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../navigation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cookbook/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cookbook
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/jsonfold/jftl-lang" class="md-tabs__link">
+        
+  
+  
+    
+  
+  GitHub
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="jftl-lang" class="md-nav__button md-logo" aria-label="jftl-lang" data-md-component="logo">
+      
+  <img src="../img/jftl-logo.svg" alt="logo">
+
+    </a>
+    jftl-lang
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jsonfold/jftl-lang" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jftl-lang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logic
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-logic-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a Logic Element?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1-setup-set-check-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1 — Setup: set, check, data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 1 — Setup: set, check, data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-foreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2 — foreach
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 2 — foreach">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source (in)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowing-start-stop-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windowing (start, stop, limit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binding-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Binding variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-item-filter-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-item filter (if)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-item-output-case-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-item output (case / out)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-per-iteration-accumulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update — per-iteration accumulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result shape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-shortcuts-map-and-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2 shortcuts: map and filter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 2 shortcuts: map and filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-3-output-case-out-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3 — Output: case / out, transform
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 3 — Output: case / out, transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        case / out
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        transform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-4-fallback-fallback-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 4 — Fallback: fallback / error
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-shape-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Shape Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Worked Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-conditional-field-with-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup — conditional field with default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#foreach-with-caseout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foreach with case/out
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowed-foreach-with-running-total-via-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windowed foreach with running total via update
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uservars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../expression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expression Engines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CLI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/jsonfold/jftl-lang" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-logic-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a Logic Element?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-1-setup-set-check-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1 — Setup: set, check, data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 1 — Setup: set, check, data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-foreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2 — foreach
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 2 — foreach">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source (in)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowing-start-stop-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windowing (start, stop, limit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binding-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Binding variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-item-filter-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-item filter (if)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-item-output-case-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-item output (case / out)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-per-iteration-accumulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update — per-iteration accumulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result shape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-2-shortcuts-map-and-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2 shortcuts: map and filter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 2 shortcuts: map and filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-3-output-case-out-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3 — Output: case / out, transform
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stage 3 — Output: case / out, transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        case / out
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        transform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stage-4-fallback-fallback-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 4 — Fallback: fallback / error
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-shape-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Shape Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Worked Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-conditional-field-with-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup — conditional field with default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#foreach-with-caseout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foreach with case/out
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowed-foreach-with-running-total-via-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windowed foreach with running total via update
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="logic-element-reference">Logic Element Reference<a class="headerlink" href="#logic-element-reference" title="Permanent link">&para;</a></h1>
+<!-- LTeX: dictionary+=foreach dictionary+=Foreach -->
+<!-- cspell:words pyeval -->
+
+<h2 id="what-is-a-logic-element">What is a Logic Element?<a class="headerlink" href="#what-is-a-logic-element" title="Permanent link">&para;</a></h2>
+<p>A logic element is a JSON object with <code>"$": true</code> that drives JFTL's non-literal processing: variable assignment, conditionals, iteration, selection, structural transformation, and error handling. Any object without <code>"$": true</code> is either treated as a literal structure (with its values recursively compiled) or, if it has <code>"$": false</code>, forced to a pure literal (no further compilation of its contents).</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello"</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>A logic element runs in its own child frame — variables set via <code>set</code> (and the loop variables from <code>foreach</code>) are local to that element and anything nested inside it. See <code>variables.md</code> for full scoping rules.</p>
+<p>Expressions inside a logic element (<code>"check"</code>, <code>"out"</code>, <code>"data"</code>, etc.) can be navigation (<code>navigation.md</code>), interpolated strings (<code>interpolation.md</code>), or expression-engine calls (<code>expression-engines.md</code>). This page only describes the logic pipeline itself — the keys, their order, and what each stage does.</p>
+<hr />
+<h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">&para;</a></h2>
+<p>A logic element is evaluated in four stages, in order. Every stage is optional — a logic element with no keys at all is legal. With no processing keys, the input current value passes through unchanged.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Key(s)</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Setup</td>
+<td><code>set</code>, <code>check</code>, <code>data</code></td>
+<td>Declare local variables, gate execution, replace current data</td>
+</tr>
+<tr>
+<td>2 — Foreach</td>
+<td><code>foreach</code> (or the <code>map</code>/<code>filter</code> shortcuts)</td>
+<td>Iterate over an array, object, or numeric range</td>
+</tr>
+<tr>
+<td>3 — Output</td>
+<td><code>case</code> / <code>out</code>, <code>transform</code></td>
+<td>Select/produce and reshape the final value</td>
+</tr>
+<tr>
+<td>4 — Fallback</td>
+<td><code>fallback</code> / <code>error</code></td>
+<td>Fallback values if the pipeline produced missing/error</td>
+</tr>
+</tbody>
+</table>
+<p>If any stage produces <code>Missing</code> or an error, evaluation stops early and falls through to Stage 4 — later stages are skipped.</p>
+<hr />
+<h2 id="stage-1-setup-set-check-data">Stage 1 — Setup: <code>set</code>, <code>check</code>, <code>data</code><a class="headerlink" href="#stage-1-setup-set-check-data" title="Permanent link">&para;</a></h2>
+<p>These three run in order, in the same frame, before any iteration or output logic.</p>
+<h3 id="set"><code>set</code><a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
+<p>An object mapping variable names to expressions. Each is evaluated in order and bound as a local variable, visible for the rest of this logic element (including <code>check</code>, <code>data</code>, <code>foreach</code>, <code>case</code>, <code>out</code>) and to nested logic elements.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"tax_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=0.08"</span><span class="p">,</span><span class="w"> </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$label"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <strong>first</strong> frame containing user-defined variables establishes the render’s global variable scope. See <code>variables.md</code>.</p>
+<h3 id="check"><code>check</code><a class="headerlink" href="#check" title="Permanent link">&para;</a></h3>
+<p>A condition, checked right after <code>set</code>. If it evaluates false, the entire logic element evaluates to <code>Missing</code> and <strong>every later stage is skipped — including <code>data</code></strong>. If omitted, <code>check</code> defaults to <code>true</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=_.age &gt;= 18"</span><span class="p">,</span><span class="w"> </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"fallback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>If <code>check</code> itself evaluates to an error notice, that error propagates to <code>error</code> handling (Stage 4), not <code>fallback</code>.</p>
+<h3 id="data"><code>data</code><a class="headerlink" href="#data" title="Permanent link">&para;</a></h3>
+<p>Only runs if <code>check</code> passed. Replaces the "current" value (<code>_</code>) used by the rest of the pipeline — <code>foreach</code>'s default source and anything downstream that reads <code>_</code>. If omitted, <code>_</code> stays whatever it already was on entry to this logic element.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.order.ship_to"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.street"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.city"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.state"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.zip"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="stage-2-foreach">Stage 2 — <code>foreach</code><a class="headerlink" href="#stage-2-foreach" title="Permanent link">&para;</a></h2>
+<p><code>foreach</code> is entirely optional. When omitted, the logic element's <code>_</code> simply passes from Stage 1 straight through to Stage 3.</p>
+<p><code>foreach</code> is itself an object with its own keys. It iterates over an array, object, or integer range, and produces either an array or an object as its result (which becomes the new <code>_</code> for the rest of the pipeline). It's also the mechanism for driving per-item processing over container elements — running a nested logic element (or any expression) once per item of an array or object, rather than operating on the container as a whole.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.items"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"var"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"if"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=item['active']"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$item.sku"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"update"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=(count or 0) + 1"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="source-in">Source (<code>in</code>)<a class="headerlink" href="#source-in" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>in</code> — the collection to iterate. If omitted, defaults to the current <code>_</code> (i.e. Stage 1's result).</li>
+<li>Accepts an <strong>array</strong> (iterates by position), an <strong>object</strong> (iterates key/value pairs, result is an object), or a non-negative <strong>integer</strong> (iterates the numeric range <code>start</code> .. <code>in-1</code>, like Pthons rnage <code>range(start, in)</code>).</li>
+<li>If the source is <strong><code>null</code>/<code>Missing</code></strong>, <code>foreach</code> produces <code>Missing</code> for the whole logic element — falling through to Stage 4's <code>fallback</code>, the same as a false <code>check</code>. This is a "soft" outcome, not an error: a missing/absent collection is treated as an expected, recoverable case.</li>
+<li>If the source is anything else (a string, a float, a boolean, etc.), it's a hard error (<code>FOREACH_IN</code>), falling through to Stage 4's <code>error</code> instead.</li>
+</ul>
+<h3 id="windowing-start-stop-limit">Windowing (<code>start</code>, <code>stop</code>, <code>limit</code>)<a class="headerlink" href="#windowing-start-stop-limit" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>start</code> (default <code>0</code>), <code>stop</code> (default: end), <code>limit</code> (max number of <em>output</em> items).</li>
+<li>Negative <code>start</code>/<code>stop</code> resolve against the total item count (array length, object item count, or range bound) — like Python negative slicing.</li>
+<li><code>start</code>/<code>stop</code> windowing applies to raw source positions, <em>before</em> the per-item <code>check</code> filter runs. An item excluded by <code>start</code>/<code>stop</code> is skipped outright; an item excluded by <code>check</code> is skipped only after being counted toward the window. These are independent — <code>start</code>/<code>stop</code> doesn't count only condition-matching items.</li>
+<li><code>limit</code> caps the number of items actually included in the <em>result</em> (after <code>check</code> filtering), and stops iteration early once reached. In particular, <code>limit: 1</code> efficiently implements “find the first item that matches,” because iteration stops after the first accepted output.</li>
+</ul>
+<p>When iterating over <strong>array</strong> or <strong>object</strong>, <code>start</code> and <code>stop</code> negative indices indicate position from the tail, therefore stop=-2 will not iterate over the last 2 elements, and start=-5 will start from the 5th element from the tail. </p>
+<p>When iterating over ranges, <code>start</code> specifies the starting location, which can be negative, or positive.</p>
+<h3 id="binding-variables">Binding variables<a class="headerlink" href="#binding-variables" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>var</code> — variable name bound to the current item's value. If omitted, the item value is stored in the current value variable (<code>_</code>).</li>
+<li><code>key</code> — variable name bound to the current key or position. If omitted, the item key or position is stored in the variables called <code>_key</code>.</li>
+</ul>
+<p>When iterating over <strong>array</strong>, the key variable (or the default <code>_key</code>) is the (0-base) integer position of each item. When iterating over an <strong>object</strong>, the key is the (string) key value. When iterating over a range, the key is (0-based integer position from the start of the range).</p>
+<p>Note that when <code>start</code> is used on an <strong>object</strong> or <strong>array</strong>, the key references the position of the item in the original source. If <code>start</code> is used over integer range, it reduces the range, and the first key will be 0.</p>
+<h3 id="per-item-filter-if">Per-item filter (<code>if</code>)<a class="headerlink" href="#per-item-filter-if" title="Permanent link">&para;</a></h3>
+<p>Same truthiness rule used throughout JFTL: <code>false</code>, <code>null</code>, and <code>Missing</code> are falsy, everything else truthy. An item failing this condition is skipped — not included in the result, doesn't count against <code>limit</code>.</p>
+<h3 id="per-item-output-case-out">Per-item output (<code>case</code> / <code>out</code>)<a class="headerlink" href="#per-item-output-case-out" title="Permanent link">&para;</a></h3>
+<p>For each included item, its contribution to the result is produced by <code>case</code> or <code>out</code> — the same two keys, with the same rules, that Stage 3 uses for the logic element's overall result (see Stage 3 below):</p>
+<ul>
+<li><code>case</code> and <code>out</code> are mutually exclusive — using both is a compile error.</li>
+<li><code>out</code> is a plain expression, evaluated per item.</li>
+<li><code>case</code> is an array of <code>{ "when": COND, "then": EXPR }</code> objects, evaluated in order — first match wins. The last item may instead be <code>{ "else": EXPR }</code>, an unconditional fallback if nothing else matched.</li>
+<li>If neither <code>case</code> nor <code>out</code> is given, the item itself is used as-is.</li>
+<li>If the result is the skip sentinel <code>_skip</code>, the item is dropped from the result entirely (not included, doesn't count against <code>limit</code>).</li>
+<li>If the result is the break sentinel value <code>_break</code>, processing of the current collection stop, and not additional items are processes.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.orders"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"var"</span><span class="p">:</span><span class="w"> </span><span class="s2">"o"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"case"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"when"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=o['total'] &gt; 100"</span><span class="p">,</span><span class="w"> </span><span class="nt">"then"</span><span class="p">:</span><span class="w"> </span><span class="s2">"large"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"else"</span><span class="p">:</span><span class="w"> </span><span class="s2">"small"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="update-per-iteration-accumulator"><code>update</code> — per-iteration accumulator<a class="headerlink" href="#update-per-iteration-accumulator" title="Permanent link">&para;</a></h3>
+<p><code>update</code> is nested inside <code>foreach</code>. It's an object mapping variable names to expressions, evaluated once per included item, <em>after</em> that item's <code>case</code>/<code>out</code> has been computed and set as the current value (<code>_</code>) — so <code>update</code> expressions can read <code>_</code> to mean "this item's output."</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.orders"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"var"</span><span class="p">:</span><span class="w"> </span><span class="s2">"o"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$o.total"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"update"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"sum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=(sum or 0) + _"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Variables set by <code>update</code> live in the same frame as Stage 1's <code>set</code> — they persist across iterations and remain visible after <code>foreach</code> completes, for use in Stage 3's <code>out</code>.</p>
+<h3 id="result-shape">Result shape<a class="headerlink" href="#result-shape" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Array</strong> source → result is an <strong>array</strong></li>
+<li><strong>Range</strong> source - result is in <strong>array</strong></li>
+<li><strong>Object</strong> source → result is an <strong>object</strong>, with the same keys as the original source keys.</li>
+</ul>
+<p>If the source is empty, or every item is filtered out, the result is an empty array/object — not <code>Missing</code>.</p>
+<hr />
+<h2 id="stage-2-shortcuts-map-and-filter">Stage 2 shortcuts: <code>map</code> and <code>filter</code><a class="headerlink" href="#stage-2-shortcuts-map-and-filter" title="Permanent link">&para;</a></h2>
+<p><code>map</code> and <code>filter</code> are shorthand for the two most common <code>foreach</code> shapes — transform every item, or keep only some of them — without writing out a full <code>foreach</code> block.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"map"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COND"</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong><code>map</code></strong> — <code>{"$": true, "map": EXPR}</code> is sugar for <code>{"$": true, "foreach": { "out": EXPR } }</code>: evaluate <code>EXPR</code> once per item and produce the resulting array.</li>
+<li><strong><code>filter</code></strong> — <code>{"$": true, "filter": COND}</code> is sugar for <code>{"$": true, "foreach": { "if": COND, "out": "$_" } }</code>: keep each item, unchanged, whose <code>COND</code> is truthy; drop the rest.</li>
+</ul>
+<p>Like <code>foreach</code>, both act on <code>_</code> at the point they run — Stage 1's result, or whatever <code>data</code> replaced it with. There's no separate source key here: unlike <code>foreach</code>, which has its own <code>in</code>, <code>map</code>/<code>filter</code> always operate on the current value directly.</p>
+<p><strong><code>map</code> and <code>filter</code> require the current value to be an array.</strong> This is stricter than full <code>foreach</code>, which also accepts an object (iterating key/value pairs) or an integer (iterating a numeric range) — passing <code>map</code>/<code>filter</code> an object or an integer is an error, not a silently-adapted iteration the way <code>foreach</code> would handle it.</p>
+<p><code>map</code> and <code>filter</code> are mutually exclusive with <code>foreach</code>, <code>case</code>, and <code>out</code> — combining either of them with any of those three is a compile-time error. They only cover the fixed, single-expression shape shown above: anything needing <code>case</code>-style branching, custom <code>var</code>/<code>key</code> bindings, <code>update</code> accumulation, or <code>start</code>/<code>stop</code>/<code>limit</code> windowing still needs the full <code>foreach</code> form.</p>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.scores"</span><span class="p">,</span><span class="w"> </span><span class="nt">"map"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=_ * 2"</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Input: <code>{"scores": [1, 2, 3]}</code> → Output: <code>[2, 4, 6]</code></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.scores"</span><span class="p">,</span><span class="w"> </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=_ &gt;= 80"</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Input: <code>{"scores": [95, 82, 61]}</code> → Output: <code>[95, 82]</code></p>
+<hr />
+<h2 id="stage-3-output-case-out-transform">Stage 3 — Output: <code>case</code> / <code>out</code>, <code>transform</code><a class="headerlink" href="#stage-3-output-case-out-transform" title="Permanent link">&para;</a></h2>
+<h3 id="case-out"><code>case</code> / <code>out</code><a class="headerlink" href="#case-out" title="Permanent link">&para;</a></h3>
+<p>The value-selection step, applied once (not per-item) over whatever <code>_</code> is at this point (the <code>foreach</code> result, or Stage 1's result if there was no <code>foreach</code>).</p>
+<p><code>case</code> and <code>out</code> are mutually exclusive — a logic element uses one or the other, never both. Combining them is a compile error (<code>OUT-CASE-CONFLICT</code>).</p>
+<ul>
+<li><strong><code>out</code></strong> — a plain expression, evaluated and used directly as the result.</li>
+<li><strong><code>case</code></strong> — an array of <code>{ "when": COND, "then": EXPR }</code> objects, evaluated in order. The <strong>first</strong> matching <code>when</code> wins, and its <code>then</code> is the result.
+  The <strong>last item in the list may instead be <code>{ "else": EXPR }</code></strong> — a single-key object naming the fallback used if no earlier <code>when</code> matched. If there's no <code>else</code> and nothing matched, the result is <code>Missing</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"case"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"when"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=_.score &gt;= 90"</span><span class="p">,</span><span class="w"> </span><span class="nt">"then"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"when"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=_.score &gt;= 80"</span><span class="p">,</span><span class="w"> </span><span class="nt">"then"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"else"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If neither <code>case</code> nor <code>out</code> is present, this step is skipped and <code>_</code> passes through unchanged.</p>
+<h3 id="transform"><code>transform</code><a class="headerlink" href="#transform" title="Permanent link">&para;</a></h3>
+<p>Names a structural transformation applied to the <code>case</code>/<code>out</code> result. See <code>transformation.md</code> for the available transforms (<code>flatten</code>, <code>merge</code>, <code>object_to_pairs</code>, <code>pairs_to_object</code>, <code>kvs_to_object</code>, <code>values_to_map</code>, <code>drop_missing</code>, <code>join</code>) and what each expects/produces. Only runs if the current value isn't <code>Missing</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.groups"</span><span class="p">,</span><span class="w"> </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$_"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">"transform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flatten"</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="stage-4-fallback-fallback-error">Stage 4 — Fallback: <code>fallback</code> / <code>error</code><a class="headerlink" href="#stage-4-fallback-fallback-error" title="Permanent link">&para;</a></h2>
+<p>Checked at the very end, and also whenever an earlier stage produces missing/error (short-circuiting the rest of the pipeline):</p>
+<ul>
+<li><code>fallback</code> — used whenever the pipeline's result is <code>Missing</code> at any point (a false <code>check</code>, an unset <code>out</code>, etc.).</li>
+<li><code>error</code> — used whenever the pipeline's result is an error at any point.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.optional_field"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=_.upper()"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"fallback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"onerror"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Both are plain expressions (not case/out blocks) — evaluated fresh, in the same frame, when needed.</p>
+<hr />
+<h2 id="complete-shape-reference">Complete Shape Reference<a class="headerlink" href="#complete-shape-reference" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">"set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"VAR"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COND"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"var"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAR"</span><span class="p">,</span><span class="w"> </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAR"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="p">,</span><span class="w"> </span><span class="nt">"stop"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"if"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COND"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"case"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"when"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COND"</span><span class="p">,</span><span class="w"> </span><span class="nt">"then"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">...</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"else"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"update"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"VAR"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">"case"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"when"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COND"</span><span class="p">,</span><span class="w"> </span><span class="nt">"then"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"else"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">"transform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"merge"</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">"fallback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"onerror"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPR"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>map: "EXPR"</code> and <code>filter: "COND"</code> (see "Stage 2 shortcuts" above) are alternatives to <code>foreach</code>, not additional keys alongside it — a logic element uses <code>foreach</code>, or <code>map</code>, or <code>filter</code>, never more than one.</p>
+<hr />
+<h2 id="worked-examples">Worked Examples<a class="headerlink" href="#worked-examples" title="Permanent link">&para;</a></h2>
+<h3 id="setup-conditional-field-with-default">Setup — conditional field with default<a class="headerlink" href="#setup-conditional-field-with-default" title="Permanent link">&para;</a></h3>
+<p><strong>Input</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<strong>Template</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=_.age &gt;= 18"</span><span class="p">,</span><span class="w"> </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"fallback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<strong>Output</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="foreach-with-caseout">Foreach with case/out<a class="headerlink" href="#foreach-with-caseout" title="Permanent link">&para;</a></h3>
+<p><strong>Input</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">95</span><span class="p">,</span><span class="w"> </span><span class="mi">82</span><span class="p">,</span><span class="w"> </span><span class="mi">61</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<strong>Template</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.scores"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"var"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"case"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"when"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=s &gt;= 90"</span><span class="p">,</span><span class="w"> </span><span class="nt">"then"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"when"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=s &gt;= 80"</span><span class="p">,</span><span class="w"> </span><span class="nt">"then"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"else"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<strong>Output</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w"> </span><span class="s2">"F"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="windowed-foreach-with-running-total-via-update">Windowed foreach with running total via <code>update</code><a class="headerlink" href="#windowed-foreach-with-running-total-via-update" title="Permanent link">&para;</a></h3>
+<p><strong>Input</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<strong>Template</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"foreach"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.orders"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"var"</span><span class="p">:</span><span class="w"> </span><span class="s2">"o"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$o.total"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"update"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"sum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$py=(sum or 0) + _"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$sum"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+Windowing starts at position 1 (skips the first order), takes 2 items (<code>25</code>, <code>5</code>), and <code>sum</code> accumulates across those.</p>
+<p><strong>Output</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>navigation.md</code> — <code>$</code>, <code>.foo</code>, <code>[...]</code> path expressions used throughout <code>check</code>/<code>out</code>/<code>data</code>/etc.</li>
+<li><code>interpolation.md</code> — <code>${...}</code> string interpolation.</li>
+<li><code>variables.md</code> — full list of built-in variables (<code>_</code>, <code>_input</code>, <code>_top</code>, <code>_global</code>, foreach specific vars, ...) and frame/scoping rules.</li>
+<li><code>expression-engines.md</code> — <code>$py=</code>, <code>$pyeval=</code>, <code>$pyrun=</code> and how to choose one.</li>
+<li><code>transformation.md</code> — the transforms usable via <code>transform</code>.</li>
+<li><code>template.md</code> — top-level <code>config</code> (e.g. <code>drop_null_attributes</code>, which affects how <code>Missing</code>/<code>null</code> values are rendered) and <code>datasets</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2769 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="JFTL — JSON Fold Template Language, specification and guide">
+      
+      
+      
+        <link rel="canonical" href="https://jftl-lang.dev/CLI/">
+      
+      
+        <link rel="prev" href="../functions/">
+      
+      
+        <link rel="next" href="../cookbook/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/jftl-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CLI - jftl-lang</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jf-template-command-line-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="jftl-lang" class="md-header__button md-logo" aria-label="jftl-lang" data-md-component="logo">
+      
+  <img src="../img/jftl-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jftl-lang
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CLI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jsonfold/jftl-lang" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jftl-lang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../navigation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cookbook/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cookbook
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/jsonfold/jftl-lang" class="md-tabs__link">
+        
+  
+  
+    
+  
+  GitHub
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="jftl-lang" class="md-nav__button md-logo" aria-label="jftl-lang" data-md-component="logo">
+      
+  <img src="../img/jftl-logo.svg" alt="logo">
+
+    </a>
+    jftl-lang
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jsonfold/jftl-lang" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jftl-lang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uservars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../expression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expression Engines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Input options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-f-input-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -f, --input-format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="-f, --input-format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        json
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stream
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jsonl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-d-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -D, --data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-f-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -F, --dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --split
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-t-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -t, --target
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-s-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -s, --sections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-m-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -m, --map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-nomap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --nomap
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processing-and-diagnostic-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processing and diagnostic options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Processing and diagnostic options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-k-keep-going" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -k, --keep-going
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-q-quiet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -q, --quiet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-v-verbose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -v, --verbose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-formatting-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON formatting options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON formatting options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-indent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --indent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-raw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --raw
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-n-no-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -N, --no-plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-a-all-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -A, --all-plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --enable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template execution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Template execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-e-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -e, --entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#positional-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positional arguments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Positional arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TEMPLATE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FILE ...
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missing values
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manifest output
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manifest output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#top-level-manifest-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Top-level manifest fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-input-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-input fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#successful-non-split-output-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Successful non-split output summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-object-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split object output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-array-or-scalar-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split array or scalar output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-and-jsonl-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stream and JSONL output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-output-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error output summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#return-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return codes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Return codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#final-status-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final status selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/jsonfold/jftl-lang" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Input options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-f-input-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -f, --input-format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="-f, --input-format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        json
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stream
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jsonl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-d-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -D, --data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-f-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -F, --dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --split
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-t-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -t, --target
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-s-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -s, --sections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-m-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -m, --map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-nomap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --nomap
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processing-and-diagnostic-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processing and diagnostic options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Processing and diagnostic options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-k-keep-going" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -k, --keep-going
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-q-quiet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -q, --quiet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-v-verbose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -v, --verbose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-formatting-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON formatting options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON formatting options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-indent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --indent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-raw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --raw
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-n-no-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -N, --no-plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-a-all-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -A, --all-plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --enable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template execution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Template execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-e-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -e, --entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#positional-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positional arguments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Positional arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TEMPLATE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FILE ...
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missing values
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manifest output
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manifest output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#top-level-manifest-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Top-level manifest fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-input-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-input fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#successful-non-split-output-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Successful non-split output summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-object-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split object output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-array-or-scalar-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split array or scalar output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-and-jsonl-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stream and JSONL output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-output-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error output summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#return-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return codes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Return codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#final-status-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final status selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="jf-template-command-line-reference"><code>jf-template</code> Command-Line Reference<a class="headerlink" href="#jf-template-command-line-reference" title="Permanent link">&para;</a></h1>
+<p><code>jf-template</code> compiles a JFTL template and applies it to zero or more JSON input documents. A template is compiled once, then reused for every supplied input file or input record.</p>
+<h2 id="general-usage">General usage<a class="headerlink" href="#general-usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>jf-template [OPTIONS] [TEMPLATE] [FILE ...]
+</code></pre></div>
+<p>The usual form is:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>template.json<span class="w"> </span>input1.json<span class="w"> </span>input2.json
+</code></pre></div>
+<p><code>TEMPLATE</code> is the path to a JSON template file. Each <code>FILE</code> is processed independently, in command-line order.</p>
+<p>When no input files are supplied, the template is rendered once with no input value; the input is JSON <code>null</code>, and is identified as <code>(none)</code> in diagnostic output and in the manifest.</p>
+<p>When <code>TEMPLATE</code> is omitted, the template is read from standard input. Because standard input is then consumed by the template, that form also renders the template once with no input value:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>&lt;<span class="w"> </span>template.json
+</code></pre></div>
+<p>Use <code>-</code> as an explicit input filename to read an input document or record stream from standard input:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>template.json<span class="w"> </span>-
+</code></pre></div>
+<p>A template can also be read explicitly from standard input by using <code>-</code> as <code>TEMPLATE</code>, but the same standard-input stream cannot then also supply an input file.</p>
+<p>By default, rendered JSON is written to standard output. Informational messages and errors are written to standard error. With <code>--target</code>, rendered documents are written to files under the target directory.</p>
+<h2 id="option-summary">Option summary<a class="headerlink" href="#option-summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th style="text-align: right;">Argument</th>
+<th style="text-align: right;">Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-f</code>, <code>--input-format</code></td>
+<td style="text-align: right;"><code>json</code>, <code>stream</code>, or <code>jsonl</code></td>
+<td style="text-align: right;"><code>json</code></td>
+<td>Select how each input source is parsed.</td>
+</tr>
+<tr>
+<td><code>-D</code>, <code>--data</code></td>
+<td style="text-align: right;"><code>KEY=VALUE</code></td>
+<td style="text-align: right;">none</td>
+<td>Define a named dataset from inline JSON or <code>@file</code>. Repeatable.</td>
+</tr>
+<tr>
+<td><code>-F</code>, <code>--dataset</code></td>
+<td style="text-align: right;"><code>NAME PATH</code></td>
+<td style="text-align: right;">none</td>
+<td>Load a named dataset from a JSON file. Repeatable.</td>
+</tr>
+<tr>
+<td><code>--split</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">off</td>
+<td>Split each top-level result into separate output documents.</td>
+</tr>
+<tr>
+<td><code>-t</code>, <code>--target</code></td>
+<td style="text-align: right;"><code>DIR</code></td>
+<td style="text-align: right;">stdout</td>
+<td>Write results under <code>DIR</code> instead of standard output.</td>
+</tr>
+<tr>
+<td><code>-s</code>, <code>--sections</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">off</td>
+<td>Add a <code>//</code> metadata line before each JSON document.</td>
+</tr>
+<tr>
+<td><code>-m</code>, <code>--map</code></td>
+<td style="text-align: right;"><code>FILE</code></td>
+<td style="text-align: right;">automatic with <code>--target</code></td>
+<td>Write a JSON manifest; use <code>-</code> for standard output.</td>
+</tr>
+<tr>
+<td><code>--nomap</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">off</td>
+<td>Suppress manifest generation, including the automatic target manifest.</td>
+</tr>
+<tr>
+<td><code>-k</code>, <code>--keep-going</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">off</td>
+<td>Continue with later input files after an input fails.</td>
+</tr>
+<tr>
+<td><code>-q</code>, <code>--quiet</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">off</td>
+<td>Suppress informational messages on standard error.</td>
+</tr>
+<tr>
+<td><code>-v</code>, <code>--verbose</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">off</td>
+<td>Include traceback details in reported exceptions.</td>
+</tr>
+<tr>
+<td><code>--indent</code></td>
+<td style="text-align: right;"><code>N</code></td>
+<td style="text-align: right;"><code>2</code></td>
+<td>Set pretty-print indentation width.</td>
+</tr>
+<tr>
+<td><code>--raw</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">off</td>
+<td>Produce compact, single-line JSON. Overrides <code>--indent</code>.</td>
+</tr>
+<tr>
+<td><code>-N</code>, <code>--no-plugins</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">off</td>
+<td>Start the engine without its normally registered plugins.</td>
+</tr>
+<tr>
+<td><code>-A</code>, <code>--all-plugins</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">off</td>
+<td>Register all built-in plugins, including trusted Python engines.</td>
+</tr>
+<tr>
+<td><code>--enable</code></td>
+<td style="text-align: right;"><code>PLUGIN</code></td>
+<td style="text-align: right;">none</td>
+<td>Parsed as an optional-plugin request; currently not applied by the CLI.</td>
+</tr>
+<tr>
+<td><code>-e</code>, <code>--entry</code></td>
+<td style="text-align: right;"><code>NAME</code></td>
+<td style="text-align: right;">main entry</td>
+<td>Parsed as a macro entry point; not operational with the current engine implementation.</td>
+</tr>
+<tr>
+<td><code>-h</code>, <code>--help</code></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td>Show command help and exit.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="input-options">Input options<a class="headerlink" href="#input-options" title="Permanent link">&para;</a></h2>
+<h3 id="-f-input-format"><code>-f</code>, <code>--input-format</code><a class="headerlink" href="#-f-input-format" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>-f {json,stream,jsonl}
+--input-format {json,stream,jsonl}
+</code></pre></div>
+<p>Selects how every input file is decoded. The option applies to all input files in the invocation.</p>
+<h4 id="json"><code>json</code><a class="headerlink" href="#json" title="Permanent link">&para;</a></h4>
+<p>Reads the entire input source as one JSON document. This is the default.</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>Whitespace before or after the document is accepted by the JSON parser. Any additional non-whitespace content makes the input invalid.</p>
+<h4 id="stream"><code>stream</code><a class="headerlink" href="#stream" title="Permanent link">&para;</a></h4>
+<p>Reads a sequence of adjacent JSON values from one input source. Values may be separated by arbitrary JSON whitespace and may span multiple lines.</p>
+<div class="highlight"><pre><span></span><code>{"id": 1}
+{"id": 2}
+[3, 4]
+</code></pre></div>
+<p>Each decoded value is rendered independently. This format is not limited to one value per line.</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--input-format<span class="w"> </span>stream<span class="w"> </span>template.json<span class="w"> </span>records.jsons
+</code></pre></div>
+<h4 id="jsonl"><code>jsonl</code><a class="headerlink" href="#jsonl" title="Permanent link">&para;</a></h4>
+<p>Reads JSON Lines input. Each nonblank physical line must contain one complete JSON value. Blank lines are ignored.</p>
+<div class="highlight"><pre><span></span><code>{"id": 1}
+{"id": 2}
+{"id": 3}
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--input-format<span class="w"> </span>jsonl<span class="w"> </span>template.json<span class="w"> </span>records.jsonl
+</code></pre></div>
+<p>A JSONL record cannot span multiple lines.</p>
+<p>For <code>stream</code> and <code>jsonl</code>, every record is rendered separately. Without <code>--split</code>, each rendered result is emitted as one JSON document. With <code>--split</code>, each record's result may produce multiple documents.</p>
+<h3 id="-d-data"><code>-D</code>, <code>--data</code><a class="headerlink" href="#-d-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>-D KEY=VALUE
+--data KEY=VALUE
+</code></pre></div>
+<p>Defines a runtime dataset available to the template through the engine's dataset collection. The option may be repeated.</p>
+<p><code>VALUE</code> is parsed as JSON, not as an unquoted shell string. Strings therefore require JSON quotes:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="s1">'region="EMEA"'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="s1">'limit=20'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="s1">'enabled=true'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="s1">'labels=["new","reviewed"]'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>To load a dataset from a JSON file, prefix the path with <code>@</code>:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>-D<span class="w"> </span><span class="nv">customers</span><span class="o">=</span>@customers.json<span class="w"> </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>The text after <code>@</code> is treated as a path and the complete file is parsed as one JSON document.</p>
+<p>Dataset names must be non-empty and unique across all <code>-D</code> and <code>-F</code> options. A duplicate name is a command syntax error. Invalid inline JSON is also a syntax error. A missing, unreadable, or invalid <code>@file</code> is an input read error.</p>
+<p>Because shells may interpret quotes and special characters, quoting the complete <code>KEY=VALUE</code> argument is recommended.</p>
+<h3 id="-f-dataset"><code>-F</code>, <code>--dataset</code><a class="headerlink" href="#-f-dataset" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>-F NAME PATH
+--dataset NAME PATH
+</code></pre></div>
+<p>Loads a named dataset from a JSON file. The option takes two separate arguments and may be repeated:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset<span class="w"> </span>customers<span class="w"> </span>data/customers.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset<span class="w"> </span>rates<span class="w"> </span>data/rates.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>This is equivalent in purpose to <code>-D NAME=@PATH</code>, but avoids embedding the name, equals sign, and path in one argument.</p>
+<p>The file must contain one valid JSON document. Dataset names must be unique across both dataset options.</p>
+<h2 id="output-options">Output options<a class="headerlink" href="#output-options" title="Permanent link">&para;</a></h2>
+<h3 id="-split"><code>--split</code><a class="headerlink" href="#-split" title="Permanent link">&para;</a></h3>
+<p>Splits the top-level rendered result into multiple output documents.</p>
+<p>The behavior depends on the result type:</p>
+<ul>
+<li><strong>Object:</strong> each property value becomes an output document. The property key is used as the preferred output filename when writing to a target directory.</li>
+<li><strong>Array or tuple:</strong> each item becomes an output document.</li>
+<li><strong>Scalar:</strong> the scalar is treated as a one-item array and produces one output document.</li>
+</ul>
+<p>Without <code>--target</code>, split documents are printed consecutively to standard output. They are separate JSON texts, not a surrounding JSON array. Use <code>--sections</code> when human-readable boundaries are needed.</p>
+<p>With <code>--target</code>, every split document is written to a separate file. For object results, a key is accepted as a filename only when it:</p>
+<ol>
+<li>starts with an ASCII letter or digit;</li>
+<li>otherwise contains only ASCII letters, digits, <code>.</code>, <code>_</code>, or <code>-</code>;</li>
+<li>has not already been used by an earlier output in the same process.</li>
+</ol>
+<p>Invalid, empty, or duplicate names are replaced by generated names such as:</p>
+<div class="highlight"><pre><span></span><code>000001.out
+000002.out
+</code></pre></div>
+<p>Generated numbering and filename uniqueness apply across the complete command invocation, not separately to each input file.</p>
+<p>When splitting an object, the manifest remains keyed by the original object key even when the physical filename has been normalized or replaced.</p>
+<h3 id="-t-target"><code>-t</code>, <code>--target</code><a class="headerlink" href="#-t-target" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>-t DIR
+--target DIR
+</code></pre></div>
+<p>Writes rendered output to files under <code>DIR</code> rather than to standard output.</p>
+<p>The directory must already exist. The CLI does not create it.</p>
+<p>Without <code>--split</code>, output filenames are derived as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output filename</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>orders.json</code></td>
+<td><code>orders.out</code></td>
+</tr>
+<tr>
+<td><code>orders.jsonl</code></td>
+<td><code>orders.out</code></td>
+</tr>
+<tr>
+<td><code>orders.yaml</code></td>
+<td><code>orders.out</code></td>
+</tr>
+<tr>
+<td><code>orders.toml</code></td>
+<td><code>orders.out</code></td>
+</tr>
+<tr>
+<td>another filename</td>
+<td>basename plus <code>.out</code> after the implemented extension handling</td>
+</tr>
+<tr>
+<td>standard input (<code>-</code>)</td>
+<td><code>stdin.out</code></td>
+</tr>
+<tr>
+<td>no input file</td>
+<td>no target filename is derived by the current implementation</td>
+</tr>
+</tbody>
+</table>
+<p>With <code>--split</code>, filenames come from result-object keys when valid; otherwise generated six-digit <code>.out</code> names are used.</p>
+<p>Specifying <code>--target</code> also enables a manifest by default. Unless overridden with <code>--map FILE</code> or disabled with <code>--nomap</code>, that manifest is written to standard output.</p>
+<h3 id="-s-sections"><code>-s</code>, <code>--sections</code><a class="headerlink" href="#-s-sections" title="Permanent link">&para;</a></h3>
+<p>Adds a JavaScript-style comment line before every rendered JSON document:</p>
+<div class="highlight"><pre><span></span><code>// output: 'orders.out' (142 characters, 9 lines), Input: orders.json (318 characters, 18 lines)
+{
+  ...
+}
+</code></pre></div>
+<p>The line identifies the output label, output size, input label, and input description. Despite the current command help mentioning timing, the section line itself does not include elapsed time.</p>
+<p>Because <code>//</code> comments are not valid JSON, output produced with <code>--sections</code> is intended for inspection or concatenated text workflows, not direct consumption by strict JSON parsers.</p>
+<p>When output is written to files, the comment is written inside each output file.</p>
+<h3 id="-m-map"><code>-m</code>, <code>--map</code><a class="headerlink" href="#-m-map" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>-m FILE
+--map FILE
+</code></pre></div>
+<p>Writes a JSON manifest describing the inputs and generated outputs.</p>
+<p>Use <code>-</code> to write the manifest to standard output:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--map<span class="w"> </span>-<span class="w"> </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>Use a path to write it to a file:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--map<span class="w"> </span>manifest.json<span class="w"> </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>When <code>--target</code> is supplied and neither <code>--map</code> nor <code>--nomap</code> is specified, manifest output defaults to standard output.</p>
+<p>When rendered output is also going to standard output, <code>--map -</code> appends the manifest to the same stream after the rendered documents. The combined stream is not one valid JSON document. For machine processing, direct the manifest to a separate file or use <code>--target</code> for rendered output.</p>
+<p>See <a href="#manifest-output">Manifest output</a> for the complete structure.</p>
+<h3 id="-nomap"><code>--nomap</code><a class="headerlink" href="#-nomap" title="Permanent link">&para;</a></h3>
+<p>Disables manifest generation.</p>
+<p>This is mainly useful with <code>--target</code>, which otherwise enables a manifest on standard output automatically:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--target<span class="w"> </span>out<span class="w"> </span>--nomap<span class="w"> </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>If both mapping controls are supplied, normal command-line action order determines the stored value for the shared setting; avoid combining <code>--map</code> and <code>--nomap</code> in the same invocation.</p>
+<h2 id="processing-and-diagnostic-options">Processing and diagnostic options<a class="headerlink" href="#processing-and-diagnostic-options" title="Permanent link">&para;</a></h2>
+<h3 id="-k-keep-going"><code>-k</code>, <code>--keep-going</code><a class="headerlink" href="#-k-keep-going" title="Permanent link">&para;</a></h3>
+<p>Continues processing later input files after an input file fails.</p>
+<p>Without this option, processing stops after the first failed input. The failure and any previously completed inputs are still represented in the manifest, and unattempted inputs contribute to its <code>skipped</code> count.</p>
+<p>With this option, each remaining input file is attempted independently. This option applies between input files. Errors while decoding records inside one <code>stream</code> or <code>jsonl</code> input terminate processing of that input source.</p>
+<p>When some inputs succeed and others fail, the final process status is <code>6</code> (<code>PARTIAL</code>).</p>
+<h3 id="-q-quiet"><code>-q</code>, <code>--quiet</code><a class="headerlink" href="#-q-quiet" title="Permanent link">&para;</a></h3>
+<p>Suppresses informational progress messages written to standard error, including template compilation timing, dataset counts, and per-input completion summaries.</p>
+<p>Errors are always printed, even in quiet mode. Rendered output and manifest output are unaffected.</p>
+<h3 id="-v-verbose"><code>-v</code>, <code>--verbose</code><a class="headerlink" href="#-v-verbose" title="Permanent link">&para;</a></h3>
+<p>Makes exception reports include Python traceback details instead of only the exception class and message.</p>
+<p>This option does not change the JSON result format. The current implementation's primary additional behavior is expanded exception reporting; ordinary progress messages are already emitted unless <code>--quiet</code> is used.</p>
+<h2 id="json-formatting-options">JSON formatting options<a class="headerlink" href="#json-formatting-options" title="Permanent link">&para;</a></h2>
+<h3 id="-indent"><code>--indent</code><a class="headerlink" href="#-indent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>--indent N
+</code></pre></div>
+<p>Sets the indentation width used for pretty-printed JSON. The default is <code>2</code>.</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--indent<span class="w"> </span><span class="m">4</span><span class="w"> </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>The value is passed directly to Python's JSON encoder. An indent of <code>0</code> therefore uses the encoder's newline-oriented zero-indent form rather than compact JSON.</p>
+<p><code>--indent</code> affects rendered output only. The manifest is always written with an indentation width of <code>2</code>.</p>
+<h3 id="-raw"><code>--raw</code><a class="headerlink" href="#-raw" title="Permanent link">&para;</a></h3>
+<p>Writes each rendered JSON document in compact form, with no optional spaces or pretty-print newlines:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">}</span>
+</code></pre></div>
+<p><code>--raw</code> overrides <code>--indent</code> when both are supplied.</p>
+<p>Each result is still terminated by a newline when written by the CLI. In <code>jsonl</code> or stream processing, this normally produces one compact rendered result per output line, provided each result itself can be represented as one JSON value.</p>
+<h2 id="plugin-configuration">Plugin configuration<a class="headerlink" href="#plugin-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="-n-no-plugins"><code>-N</code>, <code>--no-plugins</code><a class="headerlink" href="#-n-no-plugins" title="Permanent link">&para;</a></h3>
+<p>Creates the engine without the normally registered expression plugins.</p>
+<p>By default, <code>create_engine()</code> registers:</p>
+<ul>
+<li><code>py</code>, backed by the restricted SimpleEval expression engine;</li>
+<li><code>nav</code>, the navigation expression engine.</li>
+</ul>
+<p>With <code>--no-plugins</code>, neither is registered. Templates that rely on those engines will fail to compile unless plugins are registered through some other integration mechanism. The CLI itself does not perform additional registration after engine creation.</p>
+<h3 id="-a-all-plugins"><code>-A</code>, <code>--all-plugins</code><a class="headerlink" href="#-a-all-plugins" title="Permanent link">&para;</a></h3>
+<p>Creates the engine with all plugins registered by <code>create_engine()</code>.</p>
+<p>In addition to the default <code>py</code> and <code>nav</code> plugins, this enables:</p>
+<ul>
+<li><code>pyeval</code>, which evaluates trusted Python expressions;</li>
+<li><code>pyrun</code>, which executes trusted Python statements.</li>
+</ul>
+<p><code>pyeval</code> and <code>pyrun</code> are not sandboxed and must only be enabled for trusted templates.</p>
+<p><code>--all-plugins</code> and <code>--no-plugins</code> should not be combined. In the current engine factory, <code>--no-plugins</code> takes precedence because it prevents all registration, including the <code>all_plugins</code> branch.</p>
+<h3 id="-enable"><code>--enable</code><a class="headerlink" href="#-enable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>--enable {pyrun,pyeval,cel,simpleeval}
+</code></pre></div>
+<p>May be specified multiple times and is accepted by the argument parser. In the current script, however, the collected values are never used to register plugins. The option therefore has no runtime effect.</p>
+<p>The accepted names also do not exactly match every registered prefix: the default restricted engine is registered as <code>py</code>, while the accepted choice is <code>simpleeval</code>; <code>cel</code> is accepted but no CEL plugin is registered by <code>create_engine()</code>.</p>
+<p>Use <code>--all-plugins</code> to enable the trusted Python plugins in this version.</p>
+<h2 id="template-execution">Template execution<a class="headerlink" href="#template-execution" title="Permanent link">&para;</a></h2>
+<h3 id="-e-entry"><code>-e</code>, <code>--entry</code><a class="headerlink" href="#-e-entry" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>-e NAME
+--entry NAME
+</code></pre></div>
+<p>Is intended to select a named macro entry point and is passed to <code>engine.render()</code>.</p>
+<p>In the current engine implementation, a non-empty entry name prevents selection of the compiled main entry but does not resolve a named replacement. Rendering therefore fails with a <code>NO-MAIN</code> status. Named entry points are not operational in this code version; omit this option to render the template's <code>main</code> entry.</p>
+<h2 id="positional-arguments">Positional arguments<a class="headerlink" href="#positional-arguments" title="Permanent link">&para;</a></h2>
+<h3 id="template"><code>TEMPLATE</code><a class="headerlink" href="#template" title="Permanent link">&para;</a></h3>
+<p>Path to the template JSON file. The complete file is read as UTF-8, parsed as one JSON document, and compiled once before any input files are processed.</p>
+<p>Use <code>-</code> to read the template from standard input. When the positional argument is omitted, <code>-</code> is assumed.</p>
+<p>A template read or JSON parse failure returns <code>TEMPLATE_IO</code> (<code>3</code>). A compilation failure returns <code>COMPILE_ERROR</code> (<code>11</code>). Compiler notices are printed to standard error. Compilation stops when an error-severity notice is present.</p>
+<h3 id="file"><code>FILE ...</code><a class="headerlink" href="#file" title="Permanent link">&para;</a></h3>
+<p>Zero or more input paths. Inputs are processed independently and in order.</p>
+<p>Use <code>-</code> to read one input source from standard input. Only one practical standard-input consumer should be used in an invocation.</p>
+<p>When no files are listed, the template is rendered once with <code>null</code> input rather than reading input from standard input.</p>
+<h2 id="output-behavior">Output behavior<a class="headerlink" href="#output-behavior" title="Permanent link">&para;</a></h2>
+<h3 id="standard-output">Standard output<a class="headerlink" href="#standard-output" title="Permanent link">&para;</a></h3>
+<p>Without <code>--target</code>, rendered documents are written to standard output in input order and record order.</p>
+<p>Multiple results are emitted as consecutive JSON texts. Pretty-printed documents are visually separated by their own trailing newline, but the overall stream is not wrapped in an array. Use <code>--raw</code> for line-oriented output or <code>--sections</code> for human-readable boundaries.</p>
+<p>A manifest requested with <code>--map -</code> is written after all rendered output.</p>
+<h3 id="standard-error">Standard error<a class="headerlink" href="#standard-error" title="Permanent link">&para;</a></h3>
+<p>Progress information and diagnostics are written to standard error. <code>--quiet</code> suppresses only informational messages. Errors remain visible.</p>
+<h3 id="missing-values">Missing values<a class="headerlink" href="#missing-values" title="Permanent link">&para;</a></h3>
+<p>If a JFTL <code>Missing</code> value reaches JSON serialization, the CLI serializes it as JSON <code>null</code>.</p>
+<h2 id="manifest-output">Manifest output<a class="headerlink" href="#manifest-output" title="Permanent link">&para;</a></h2>
+<p>The manifest is a JSON object written after input processing. It summarizes the command-level result and contains one entry for every input that was actually reached before processing stopped.</p>
+<p>Top-level structure:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"passed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"failed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"skipped"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"input1.json"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input1.json"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"ok"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"lines"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">450</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"lines"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"input2.json"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input2.json"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"ok"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error: ProcessingException: ..."</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="top-level-manifest-fields">Top-level manifest fields<a class="headerlink" href="#top-level-manifest-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>count</code></td>
+<td>integer</td>
+<td>Number of input sources originally selected for processing.</td>
+</tr>
+<tr>
+<td><code>passed</code></td>
+<td>integer</td>
+<td>Number of input sources that completed successfully.</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>integer</td>
+<td>Number of input sources that were attempted and failed.</td>
+</tr>
+<tr>
+<td><code>skipped</code></td>
+<td>integer</td>
+<td>Number not attempted, normally because processing stopped without <code>--keep-going</code>.</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>object</td>
+<td>Per-input entries keyed by the original input path.</td>
+</tr>
+</tbody>
+</table>
+<p>When there are no input files, the per-input key and <code>source</code> are the empty string, representing the no-input execution. An explicit standard-input file is keyed by <code>-</code> and has <code>source: "-"</code>.</p>
+<h3 id="per-input-fields">Per-input fields<a class="headerlink" href="#per-input-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>Original input path, <code>-</code>, or an empty string for no input.</td>
+</tr>
+<tr>
+<td><code>ok</code></td>
+<td>boolean</td>
+<td>Whether the complete input source processed successfully.</td>
+</tr>
+<tr>
+<td><code>lines</code></td>
+<td>integer</td>
+<td>Input line count, when collected by the selected reader.</td>
+</tr>
+<tr>
+<td><code>length</code></td>
+<td>integer</td>
+<td>Input character count, when collected by the selected reader.</td>
+</tr>
+<tr>
+<td><code>doc_count</code></td>
+<td>integer</td>
+<td>For streamed input metadata, the accumulated generated-document count as currently calculated.</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>object, array, or <code>null</code></td>
+<td>Output summary, split-output summaries, record summaries, or error details.</td>
+</tr>
+</tbody>
+</table>
+<p>Input size fields are present when the input reader collected them. The no-input case normally has no size fields.</p>
+<h3 id="successful-non-split-output-summary">Successful non-split output summary<a class="headerlink" href="#successful-non-split-output-summary" title="Permanent link">&para;</a></h3>
+<p>When output goes to standard output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"lines"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>When output goes to a target file:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input1.out"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"lines"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>length</code> is the UTF-8 byte length of the serialized JSON text before the final newline is added. <code>lines</code> describes the serialized JSON text itself. A <code>--sections</code> comment line is not included in these counts.</p>
+<h3 id="split-object-output">Split object output<a class="headerlink" href="#split-object-output" title="Permanent link">&para;</a></h3>
+<p>For a top-level object, <code>output</code> is an object keyed by each original result key:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"customer-a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer-a"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"lines"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">72</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"unsafe/name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000001.out"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"lines"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The manifest key preserves the original result key. The nested <code>file</code> field reports the normalized physical filename when <code>--target</code> is used.</p>
+<p>Without <code>--target</code>, the nested summaries omit <code>file</code>.</p>
+<h3 id="split-array-or-scalar-output">Split array or scalar output<a class="headerlink" href="#split-array-or-scalar-output" title="Permanent link">&para;</a></h3>
+<p>For an array result, <code>output</code> is an array of document summaries:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000001.out"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"lines"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000002.out"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"lines"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">91</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>A scalar result under <code>--split</code> is represented the same way as a one-item array.</p>
+<h3 id="stream-and-jsonl-output">Stream and JSONL output<a class="headerlink" href="#stream-and-jsonl-output" title="Permanent link">&para;</a></h3>
+<p>For <code>stream</code> and <code>jsonl</code> input, <code>output</code> is an array with one summary per successfully reached input record. Each element has the same shape as that record's non-split or split output summary.</p>
+<p>If rendering returns an unsuccessful status for a record, the record summary is currently <code>null</code>; processing continues to later records within that source, and the containing input is marked unsuccessful.</p>
+<h3 id="error-output-summary">Error output summary<a class="headerlink" href="#error-output-summary" title="Permanent link">&para;</a></h3>
+<p>When an exception prevents a normal output summary, <code>output</code> contains:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error: ProcessingException: ..."</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>code</code> is the classified error code captured for that input. Some unsuccessful engine render statuses return no classified exception code; in that case the summary may contain code <code>0</code> and a null message in the current implementation.</p>
+<h2 id="return-codes">Return codes<a class="headerlink" href="#return-codes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Code</th>
+<th>Name</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><code>0</code></td>
+<td><code>SUCCESS</code></td>
+<td>All selected inputs succeeded.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>1</code></td>
+<td><code>READ_ERROR</code></td>
+<td>An input or dataset file could not be read, or streamed input decoding raised an exception.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>2</code></td>
+<td><code>BAD_SYNTAX</code></td>
+<td>CLI-level data syntax error, such as malformed <code>-D</code>, duplicate dataset names, or an unsupported internal input-format branch. Standard <code>argparse</code> usage errors also conventionally exit with <code>2</code> before <code>main()</code> returns.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>3</code></td>
+<td><code>TEMPLATE_IO</code></td>
+<td>The template file could not be read or its text was not valid JSON.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>4</code></td>
+<td><code>GENERAL_ERROR</code></td>
+<td>An unexpected CLI failure or an unclassified failed input.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>5</code></td>
+<td><code>OUTPUT_ERROR</code></td>
+<td>A rendered output file or manifest could not be written.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>6</code></td>
+<td><code>PARTIAL</code></td>
+<td>At least one input succeeded and at least one selected input failed or was not completed.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>11</code></td>
+<td><code>COMPILE_ERROR</code></td>
+<td>Template compilation failed or produced an error-severity compiler notice.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>13</code></td>
+<td><code>RENDER_ERROR</code></td>
+<td>A <code>RenderError</code> escaped from engine rendering.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>14</code></td>
+<td><code>USER_ERROR</code></td>
+<td>Reserved for an error raised intentionally by a template; no direct assignment is present in this script version.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>16</code></td>
+<td><code>PY_EXCEPTION</code></td>
+<td>An unexpected Python exception occurred while rendering or processing an input.</td>
+</tr>
+<tr>
+<td style="text-align: right;"><code>18</code></td>
+<td><code>PLUGIN_ERROR</code></td>
+<td>Reserved for plugin failures; no direct assignment is present in this script version.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="final-status-selection">Final status selection<a class="headerlink" href="#final-status-selection" title="Permanent link">&para;</a></h3>
+<p>After input processing, the CLI selects its final status as follows:</p>
+<ol>
+<li>If no input succeeded, return the captured failure code.</li>
+<li>If every originally selected input succeeded, return <code>0</code>.</li>
+<li>If at least one input succeeded but not all succeeded, return <code>6</code>.</li>
+</ol>
+<p>Without <code>--keep-going</code>, later inputs may be skipped after the first failure; this leads to <code>PARTIAL</code> when an earlier input succeeded. If no earlier input succeeded, the current script has the status-code defect described above.</p>
+<p>Template read and compilation failures occur before input processing and return immediately with their dedicated codes. Manifest write failure also returns immediately as <code>OUTPUT_ERROR</code>.</p>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<p>Render one input document to standard output:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>Render several files with compact output:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--raw<span class="w"> </span>template.json<span class="w"> </span>input1.json<span class="w"> </span>input2.json
+</code></pre></div>
+<p>Read JSON Lines and emit one compact result per record:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--input-format<span class="w"> </span>jsonl<span class="w"> </span>--raw<span class="w"> </span>template.json<span class="w"> </span>records.jsonl
+</code></pre></div>
+<p>Continue after file failures and write a manifest:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--keep-going<span class="w"> </span>--map<span class="w"> </span>manifest.json<span class="w"> </span>template.json<span class="w"> </span>inputs/*.json
+</code></pre></div>
+<p>Write one output file per input and suppress the automatic manifest:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>out
+jf-template<span class="w"> </span>--target<span class="w"> </span>out<span class="w"> </span>--nomap<span class="w"> </span>template.json<span class="w"> </span>inputs/*.json
+</code></pre></div>
+<p>Split an object or array result into separate files:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>out
+jf-template<span class="w"> </span>--split<span class="w"> </span>--target<span class="w"> </span>out<span class="w"> </span>--map<span class="w"> </span>manifest.json<span class="w"> </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>Supply inline and file-backed datasets:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="s1">'run_date="2026-08-04"'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-D<span class="w"> </span><span class="nv">config</span><span class="o">=</span>@config.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span>customers<span class="w"> </span>customers.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>Enable the trusted Python expression and statement engines:</p>
+<div class="highlight"><pre><span></span><code>jf-template<span class="w"> </span>--all-plugins<span class="w"> </span>template.json<span class="w"> </span>input.json
+</code></pre></div>
+<p>Only use <code>--all-plugins</code> with trusted templates.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

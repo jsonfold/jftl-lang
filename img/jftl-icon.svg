@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="112 197 480 442">
+  <defs>
+    <linearGradient id="blueCyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1668ff"/>
+      <stop offset="0.55" stop-color="#18c9ff"/>
+      <stop offset="1" stop-color="#00e4d8"/>
+    </linearGradient>
+    <linearGradient id="cyanGreen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1ec9ff"/>
+      <stop offset="0.48" stop-color="#00ddd0"/>
+      <stop offset="0.76" stop-color="#28de73"/>
+      <stop offset="1" stop-color="#bdf000"/>
+    </linearGradient>
+    <linearGradient id="jftlGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1678ff"/>
+      <stop offset="0.28" stop-color="#14c7ff"/>
+      <stop offset="0.55" stop-color="#00d9c7"/>
+      <stop offset="0.78" stop-color="#36dc62"/>
+      <stop offset="1" stop-color="#d9ef00"/>
+    </linearGradient>
+    <linearGradient id="braceLeft" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#27e1ff"/>
+      <stop offset="0.58" stop-color="#159cff"/>
+      <stop offset="1" stop-color="#1261ff"/>
+    </linearGradient>
+    <linearGradient id="braceRight" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#d9ff31"/>
+      <stop offset="0.48" stop-color="#9bf11f"/>
+      <stop offset="1" stop-color="#62c91a"/>
+    </linearGradient>
+    <linearGradient id="iconBorder" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4d8cff"/>
+      <stop offset="0.45" stop-color="#17bbff"/>
+      <stop offset="0.78" stop-color="#52d391"/>
+      <stop offset="1" stop-color="#1f789b"/>
+    </linearGradient>
+    <radialGradient id="iconBg" cx="38%" cy="32%" r="90%">
+      <stop offset="0" stop-color="#061839"/>
+      <stop offset="0.7" stop-color="#03102b"/>
+      <stop offset="1" stop-color="#021023"/>
+    </radialGradient>
+    <radialGradient id="nodeYellow" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#fff365"/>
+      <stop offset="0.45" stop-color="#ffd500"/>
+      <stop offset="1" stop-color="#ff9c00"/>
+    </radialGradient>
+    <radialGradient id="nodeBlue" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#8af6ff"/>
+      <stop offset="0.45" stop-color="#22ccff"/>
+      <stop offset="1" stop-color="#0674ff"/>
+    </radialGradient>
+    <radialGradient id="nodePurple" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#d39cff"/>
+      <stop offset="0.45" stop-color="#8d4dff"/>
+      <stop offset="1" stop-color="#5d29d5"/>
+    </radialGradient>
+    <linearGradient id="sqGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9eff3d"/>
+      <stop offset="1" stop-color="#58c617"/>
+    </linearGradient>
+    <linearGradient id="sqOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd71f"/>
+      <stop offset="1" stop-color="#ff7a00"/>
+    </linearGradient>
+    <linearGradient id="sqPink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff8edb"/>
+      <stop offset="1" stop-color="#d92f80"/>
+    </linearGradient>
+
+    <linearGradient id="gradJ" x1="0" y1="0" x2="0.45" y2="1">
+      <stop offset="0" stop-color="#28ddff" />
+      <stop offset="0.55" stop-color="#12aaff" />
+      <stop offset="1" stop-color="#1268ff" />
+    </linearGradient>
+
+    <linearGradient id="gradF" x1="0" y1="0" x2="0.25" y2="1">
+      <stop offset="0" stop-color="#16e0e9" />
+      <stop offset="0.52" stop-color="#13ccef" />
+      <stop offset="1" stop-color="#0a9be9" />
+    </linearGradient>
+
+    <linearGradient id="gradT" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#13d9e7" />
+      <stop offset="0.48" stop-color="#00d8bd" />
+      <stop offset="1" stop-color="#22db6a" />
+    </linearGradient>
+
+    <linearGradient id="gradL" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#d9f23a" />
+      <stop offset="0.45" stop-color="#9bea18" />
+      <stop offset="1" stop-color="#b8e600" />
+    </linearGradient>
+  
+  </defs>
+
+  <g>
+    <rect x="122" y="207" width="460" height="422" rx="91"
+          fill="url(#iconBg)" stroke="url(#iconBorder)" stroke-width="4"/>
+    <rect x="127" y="212" width="450" height="412" rx="86"
+          fill="none" stroke="#0b4ca9" stroke-opacity=".45" stroke-width="2"/>
+
+    <!-- braces -->
+    <path d="M226 266
+             C190 266 190 296 190 328
+             L190 360
+             C190 393 177 407 151 416
+             L151 431
+             C177 440 190 454 190 487
+             L190 519
+             C190 551 190 582 226 582"
+          fill="none" stroke="url(#braceLeft)" stroke-width="27"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M478 266
+             C514 266 514 296 514 328
+             L514 360
+             C514 393 527 407 552 416
+             L552 431
+             C527 440 514 454 514 487
+             L514 519
+             C514 551 514 582 478 582"
+          fill="none" stroke="url(#braceRight)" stroke-width="27"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- top curved connector -->
+    <path d="M283 327 C320 327 321 377 361 377 C397 377 393 330 429 330"
+          fill="none" stroke="#22d8ff" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- middle connector / arrow, complete -->
+    <path d="M286 419 H392"
+          fill="none" stroke="#28d9ff" stroke-width="9"
+          stroke-linecap="round"/>
+    <path d="M392 401 L422 419 L392 437 Z"
+          fill="#28d9ff" stroke="#7af1ff" stroke-width="2"
+          stroke-linejoin="round"/>
+
+    <!-- bottom curved connector -->
+    <path d="M283 512 C322 512 319 466 360 466 C395 466 393 511 428 511"
+          fill="none" stroke="#22d8ff" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- circles -->
+    <circle cx="259" cy="326" r="27" fill="url(#nodeYellow)"
+            stroke="#fff36a" stroke-width="4"/>
+    <circle cx="259" cy="419" r="27" fill="url(#nodeBlue)"
+            stroke="#70ecff" stroke-width="4"/>
+    <circle cx="259" cy="512" r="27" fill="url(#nodePurple)"
+            stroke="#c692ff" stroke-width="4"/>
+    <circle cx="269" cy="316" r="5" fill="#fff" opacity=".95"/>
+    <circle cx="269" cy="409" r="5" fill="#fff" opacity=".9"/>
+    <circle cx="269" cy="502" r="5" fill="#fff" opacity=".9"/>
+
+    <!-- squares -->
+    <rect x="427" y="306" width="48" height="48" rx="4"
+          fill="url(#sqGreen)" stroke="#a9ff54" stroke-width="4"/>
+    <rect x="436" y="315" width="30" height="30" rx="2" fill="#6bc81e" opacity=".85"/>
+
+    <rect x="427" y="394" width="48" height="48" rx="4"
+          fill="url(#sqOrange)" stroke="#ffd329" stroke-width="4"/>
+    <rect x="436" y="403" width="30" height="30" rx="2" fill="#ff8c00" opacity=".9"/>
+
+    <rect x="427" y="487" width="48" height="48" rx="4"
+          fill="url(#sqPink)" stroke="#ff8bd3" stroke-width="4"/>
+    <rect x="436" y="496" width="30" height="30" rx="2" fill="#df3b83" opacity=".9"/>
+  </g>
+</svg>

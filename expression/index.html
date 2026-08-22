@@ -1,0 +1,1876 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="JFTL — JSON Fold Template Language, specification and guide">
+      
+      
+      
+        <link rel="canonical" href="https://jftl-lang.dev/expression/">
+      
+      
+        <link rel="prev" href="../transform/">
+      
+      
+        <link rel="next" href="../template/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/jftl-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Expression Engines - jftl-lang</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#expression-engines" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="jftl-lang" class="md-header__button md-logo" aria-label="jftl-lang" data-md-component="logo">
+      
+  <img src="../img/jftl-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jftl-lang
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Expression Engines
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jsonfold/jftl-lang" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jftl-lang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../navigation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cookbook/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cookbook
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/jsonfold/jftl-lang" class="md-tabs__link">
+        
+  
+  
+    
+  
+  GitHub
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="jftl-lang" class="md-nav__button md-logo" aria-label="jftl-lang" data-md-component="logo">
+      
+  <img src="../img/jftl-logo.svg" alt="logo">
+
+    </a>
+    jftl-lang
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jsonfold/jftl-lang" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jftl-lang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uservars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expression Engines
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expression Engines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-engines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Engines
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nav" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nav
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strict
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="strict">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#py" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        py
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyeval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyeval
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pyeval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyrun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyrun
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pyrun">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#return-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CLI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/jsonfold/jftl-lang" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-engines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Engines
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nav" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nav
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strict
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="strict">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#py" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        py
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#built-in-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyeval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyeval
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pyeval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyrun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyrun
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pyrun">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#return-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristics_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="expression-engines">Expression Engines<a class="headerlink" href="#expression-engines" title="Permanent link">&para;</a></h1>
+<p>JFTL expressions are evaluated by <strong>expression engines</strong>. Each engine provides its own syntax, capabilities, and security model.</p>
+<p>Expressions are selected using the following syntax:</p>
+<div class="highlight"><pre><span></span><code>$ENGINE=expression
+</code></pre></div>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>$py=price * quantity
+$pyeval=sum(values)
+$pyrun=return _.upper()
+</code></pre></div>
+<p>If no engine name is specified, the template's configured default expression engine is used.</p>
+<div class="highlight"><pre><span></span><code>$=price * quantity
+</code></pre></div>
+<p>The default engine is configured in the template's <code>config</code> section.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"default_expr_engine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"py"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="available-engines">Available Engines<a class="headerlink" href="#available-engines" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Safety</th>
+<th>Language</th>
+<th>Typical Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nav</code></td>
+<td>Safe</td>
+<td>JFTL Navigation</td>
+<td>Data lookup only</td>
+</tr>
+<tr>
+<td><code>strict</code></td>
+<td>Safe</td>
+<td>JFTL Navigation (strict)</td>
+<td>Data lookup that must fail loudly on type mismatches</td>
+</tr>
+<tr>
+<td><code>py</code></td>
+<td>Safe</td>
+<td>Restricted Python (SimpleEval)</td>
+<td>Calculations, filtering, comprehensions</td>
+</tr>
+<tr>
+<td><code>pyeval</code></td>
+<td>Unsafe</td>
+<td>Full Python <code>eval()</code></td>
+<td>Trusted templates requiring unrestricted expressions</td>
+</tr>
+<tr>
+<td><code>pyrun</code></td>
+<td>Unsafe</td>
+<td>Full Python statements</td>
+<td>Complex logic that requires loops, assignments, or multiple statements</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="nav">nav<a class="headerlink" href="#nav" title="Permanent link">&para;</a></h2>
+<p>The <code>nav</code> engine is the simplest expression engine. It performs only navigation through the current document and runtime variables. See <code>navigation.md</code> for full syntax.</p>
+<p>Note: The Navigation engine is automatically assumed when the expression starts with '$', and follow the syntax of navigation expressions (specifically, $, $^, $foo, $["bar"], ...). Usually, there is no need to specify it explicitly.</p>
+<p>No functions, operators, or calculations are supported.</p>
+<p>Typical uses include:</p>
+<ul>
+<li>Reading values</li>
+<li>Selecting nested fields</li>
+<li>Looking up variables</li>
+<li>Dynamic object indexing</li>
+</ul>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<p>Current object:</p>
+<div class="highlight"><pre><span></span><code>"$nav=$"
+</code></pre></div>
+<p>Nested field:</p>
+<div class="highlight"><pre><span></span><code>"$nav=$.customer.name"
+</code></pre></div>
+<p>Variable lookup:</p>
+<div class="highlight"><pre><span></span><code>"$nav=$total"
+</code></pre></div>
+<p>Dynamic lookup:</p>
+<div class="highlight"><pre><span></span><code>"$.fxrate[$currency]"
+</code></pre></div>
+<p><em>(The <code>.name</code> dot segments above are JFTL's own navigation grammar — see <code>navigation.md</code> — not Python attribute access, so they stay as-is even though the Python-engine examples below use bracket notation.)</em></p>
+<h3 id="characteristics">Characteristics<a class="headerlink" href="#characteristics" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Safe</li>
+<li>No function calls</li>
+<li>No arithmetic</li>
+<li>No string manipulation</li>
+<li>Fastest expression engine</li>
+<li>A missing key, an out-of-range index, or navigating into a value of the wrong container type (e.g. a <code>.field</code> segment on an array) all resolve quietly to <code>Missing</code>, never an error. Use <code>strict</code> when that silence is unacceptable.</li>
+</ul>
+<hr />
+<h2 id="strict">strict<a class="headerlink" href="#strict" title="Permanent link">&para;</a></h2>
+<p>The <code>strict</code> engine uses the exact same navigation syntax as <code>nav</code>, with one difference: a <strong>type mismatch</strong> along the path — for example applying a <code>.field</code> segment to something that isn't an object, or an <code>[index]</code> segment to something that isn't an array — produces a runtime error instead of quietly resolving to <code>Missing</code>.</p>
+<p>A simple missing key or a value that genuinely doesn't exist still resolves to <code>Missing</code> under <code>strict</code>, exactly as it does under <code>nav</code>. What <code>strict</code> catches is navigating as if the shape of the data were something it isn't.</p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="s2">"green"</span><span class="p">,</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>"$nav=$.tags.owner"      →  Missing     (tags is an array, not an object — nav stays silent)
+"$strict=$.tags.owner"   →  runtime error (tags is an array, not an object — strict reports it)
+</code></pre></div>
+<h3 id="characteristics_1">Characteristics<a class="headerlink" href="#characteristics_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Safe</li>
+<li>Same grammar and capabilities as <code>nav</code> — no functions, arithmetic, or string manipulation</li>
+<li>Fails loudly on container-type mismatches instead of returning <code>Missing</code></li>
+<li>Useful wherever a wrong-shaped document should be treated as a bug, not just an absent value</li>
+</ul>
+<hr />
+<h2 id="py">py<a class="headerlink" href="#py" title="Permanent link">&para;</a></h2>
+<p>The <code>py</code> engine evaluates expressions using a restricted subset of Python implemented with <strong>SimpleEval</strong>.</p>
+<p>It is the recommended engine for most templates.</p>
+<p>JSON objects are plain Python <code>dict</code>s, and <code>py</code>'s attribute-access whitelist only covers a handful of <code>str</code> methods — so descend into JSON objects/arrays with <code>['key']</code> / <code>[index]</code>, not <code>.key</code>. Single quotes are used for these Python string literals throughout this document, since the enclosing template value is itself a JSON string — using single quotes inside means the Python code never needs to escape a <code>"</code>.</p>
+<p>Supported features include:</p>
+<ul>
+<li>Arithmetic</li>
+<li>Comparisons</li>
+<li>Boolean operators</li>
+<li>List comprehensions</li>
+<li>Dictionary comprehensions</li>
+<li>Basic built-in functions</li>
+</ul>
+<p>Access to arbitrary Python objects and methods is restricted.</p>
+<h3 id="example-1">Example 1<a class="headerlink" href="#example-1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>"$py=price * quantity"
+</code></pre></div>
+<h3 id="example-2">Example 2<a class="headerlink" href="#example-2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>"$py=customer['age'] &gt;= 18"
+</code></pre></div>
+<h3 id="example-3">Example 3<a class="headerlink" href="#example-3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>"$py=[item['name'] for item in _['items'] if item['price'] &gt; 100]"
+</code></pre></div>
+<h3 id="built-in-functions">Built-in Functions<a class="headerlink" href="#built-in-functions" title="Permanent link">&para;</a></h3>
+<p>The default configuration provides common functions including:</p>
+<ul>
+<li><code>abs</code></li>
+<li><code>all</code></li>
+<li><code>any</code></li>
+<li><code>bool</code></li>
+<li><code>chr</code></li>
+<li><code>float</code></li>
+<li><code>int</code></li>
+<li><code>len</code></li>
+<li><code>max</code></li>
+<li><code>min</code></li>
+<li><code>ord</code></li>
+<li><code>range</code></li>
+<li><code>round</code></li>
+<li><code>sorted</code></li>
+<li><code>str</code></li>
+<li><code>sum</code></li>
+</ul>
+<p>Strings expose a limited set of methods, including:</p>
+<ul>
+<li><code>lower</code></li>
+<li><code>upper</code></li>
+<li><code>strip</code></li>
+<li><code>lstrip</code></li>
+<li><code>rstrip</code></li>
+<li><code>startswith</code></li>
+<li><code>endswith</code></li>
+<li><code>replace</code></li>
+<li><code>split</code></li>
+<li><code>join</code></li>
+</ul>
+<h3 id="characteristics_2">Characteristics<a class="headerlink" href="#characteristics_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Safe</li>
+<li>Good performance</li>
+<li>Recommended for most templates</li>
+<li>Supports comprehensions</li>
+<li>Does not allow arbitrary Python execution</li>
+</ul>
+<hr />
+<h2 id="pyeval">pyeval<a class="headerlink" href="#pyeval" title="Permanent link">&para;</a></h2>
+<p>The <code>pyeval</code> engine evaluates the expression using Python's built-in <code>eval()</code>.</p>
+<p>The expression has unrestricted access to Python language features and any objects available in the evaluation environment. JSON objects are still plain <code>dict</code>s, so use <code>['key']</code> to descend into them — dot access only works for genuine Python attributes/methods (e.g. <code>.values()</code> on a dict, <code>.upper()</code> on a string), never for JSON fields.</p>
+<p><strong>This engine should only be enabled for trusted templates.</strong></p>
+<h3 id="example-1_1">Example 1<a class="headerlink" href="#example-1_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>"$pyeval=sum(_.values())"
+</code></pre></div>
+<h3 id="example-2_1">Example 2<a class="headerlink" href="#example-2_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>"$pyeval=[c for _, c in sorted((c['balance'], c) for c in customers)]"
+</code></pre></div>
+<p>Sorts <code>customers</code> by <code>balance</code> using a decorate-sort-undecorate pattern — <code>pyeval</code> does not permit <code>lambda</code> expressions (see <code>pyrun</code> below), so a <code>key=lambda c: ...</code> argument isn't available here.</p>
+<h3 id="example-3_1">Example 3<a class="headerlink" href="#example-3_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>"$pyeval={name: value for name, value in _.items() if value &gt; 0}"
+</code></pre></div>
+<h3 id="characteristics_3">Characteristics<a class="headerlink" href="#characteristics_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Unsafe to use on untrusted templates</li>
+<li>Full Python expression syntax</li>
+<li>Arbitrary function calls permitted</li>
+<li><code>lambda</code> expressions are <strong>not</strong> permitted (rejected at compile time)</li>
+<li>Suitable only for trusted environments</li>
+</ul>
+<hr />
+<h2 id="pyrun">pyrun<a class="headerlink" href="#pyrun" title="Permanent link">&para;</a></h2>
+<p>The <code>pyrun</code> engine executes Python statements rather than a single expression.</p>
+<p>Unlike the other engines, it allows:</p>
+<ul>
+<li>assignments</li>
+<li>loops</li>
+<li>conditional statements</li>
+<li>early returns</li>
+</ul>
+<p>The result of the expression is the value returned by the <code>return</code> statement.</p>
+<p>The engine expect a valid python program. This means that python rules must be followed: each statement should be on its own line (use "\n" to enter new lines into the JSON), and indentation rules must be followed. As an alternative, Python allows multiple statements on a single line, separated by semicolon.</p>
+<p>A compound statement (<code>if</code>, <code>for</code>, <code>while</code>) whose entire body is a single simple statement can similarly be kept on one line, by writing the statement directly after the header's <code>:</code> instead of indenting it on its own line:</p>
+<div class="highlight"><pre><span></span><code>$pyrun=total = 0
+for item in _['items']: total += item['price']
+return total
+</code></pre></div>
+<p>Python's walrus operator (<code>:=</code>) is also available, letting a script bind an ad-hoc variable in the middle of an expression instead of needing a separate assignment statement first:</p>
+<div class="highlight"><pre><span></span><code>$pyrun=values = [n for x in _['items'] if (n := x['price']) &gt; 0]
+return sum(values)
+</code></pre></div>
+<p>Here <code>n := x['price']</code> both computes and names each item's price once, reusing it for the filter without recomputing it.</p>
+<p>As with <code>pyeval</code>, JSON objects are plain <code>dict</code>s — use <code>['key']</code> to descend into them, not <code>.key</code>.</p>
+<p><strong>This engine should only be enabled for trusted templates.</strong></p>
+<h3 id="return-value">Return Value<a class="headerlink" href="#return-value" title="Permanent link">&para;</a></h3>
+<p>A <code>pyrun</code> script must reach an explicit <code>return</code> to produce a result. If execution runs to the end of the script without hitting a <code>return</code> — for example, an <code>if</code> with no covering <code>else</code> — the expression evaluates to <code>Missing</code>, the same as any other JFTL value that couldn't be produced. Normal <code>fallback</code> handling applies, so pair a <code>pyrun</code> expression with <code>fallback</code> whenever a script might legitimately fall through without returning.</p>
+<h3 id="example-1_2">Example 1<a class="headerlink" href="#example-1_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"$"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w"> </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w"> </span><span class="p">}},</span>
+<span class="w">        </span><span class="nt">"out"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$pyrun= greet='Hello'; return greet + ' ' + _['user']['first']"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>will print the "Hello Jon"</p>
+<h3 id="example-2_2">Example 2<a class="headerlink" href="#example-2_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="s2">"$pyrun=</span><span class="se">\n</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>\<span class="n">n</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">_</span><span class="p">[</span><span class="s1">'items'</span><span class="p">]:</span>\<span class="n">n</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">item</span><span class="p">[</span><span class="s1">'price'</span><span class="p">]</span>\<span class="n">n</span>
+<span class="k">return</span> <span class="n">total</span>\<span class="n">n</span>
+<span class="s2">"</span>
+</code></pre></div>
+<h3 id="example-3_2">Example 3<a class="headerlink" href="#example-3_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="n">pyrun</span><span class="o">=</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">customer</span> <span class="ow">in</span> <span class="n">customers</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">customer</span><span class="p">[</span><span class="s1">'balance'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">customer</span><span class="p">[</span><span class="s1">'name'</span><span class="p">])</span>
+
+<span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<h3 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h3 id="characteristics_4">Characteristics<a class="headerlink" href="#characteristics_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Unsafe</li>
+<li>Full Python statements</li>
+<li>Supports loops and assignments</li>
+<li>Lambda expressions supported</li>
+<li>Most flexible engine</li>
+<li>Slower than expression engines due to execution overhead</li>
+</ul>
+<hr />
+<h1 id="choosing-an-engine">Choosing an Engine<a class="headerlink" href="#choosing-an-engine" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Recommended Engine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read data</td>
+<td><code>nav</code></td>
+</tr>
+<tr>
+<td>Read data, fail loudly on wrong-shaped input</td>
+<td><code>strict</code></td>
+</tr>
+<tr>
+<td>Calculations</td>
+<td><code>py</code></td>
+</tr>
+<tr>
+<td>Filtering and comprehensions</td>
+<td><code>py</code></td>
+</tr>
+<tr>
+<td>Advanced Python expressions</td>
+<td><code>pyeval</code></td>
+</tr>
+<tr>
+<td>Multi-statement algorithms</td>
+<td><code>pyrun</code></td>
+</tr>
+</tbody>
+</table>
+<p>For most templates, <strong><code>py</code></strong> provides the best balance between functionality, performance, and safety. The <code>pyeval</code> and <code>pyrun</code> engines are intended only for trusted environments where unrestricted Python execution is acceptable.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
