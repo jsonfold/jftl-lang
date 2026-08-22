@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="104 197 1400 442">
+     viewBox="116 220 1377 410">
   <defs>
     <linearGradient id="blueCyan" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#1668ff"/>
@@ -95,10 +95,8 @@
   </defs>
 
   <g>
-    <rect x="122" y="207" width="460" height="422" rx="91"
+    <rect x="122" y="230" width="460" height="390" rx="91"
           fill="url(#iconBg)" stroke="url(#iconBorder)" stroke-width="4"/>
-    <rect x="127" y="212" width="450" height="412" rx="86"
-          fill="none" stroke="#0b4ca9" stroke-opacity=".45" stroke-width="2"/>
 
     <!-- braces -->
     <path d="M226 266

@@ -1,12 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-    width="1377" height="434"
-    viewBox="116 201 1377 434">
+     width="800" viewBox="90 190 1425 645">
   <defs>
-    <linearGradient id="blueCyan" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1668ff"/>
-      <stop offset="0.55" stop-color="#18c9ff"/>
-      <stop offset="1" stop-color="#00e4d8"/>
-    </linearGradient>
     <linearGradient id="cyanGreen" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#1ec9ff"/>
       <stop offset="0.48" stop-color="#00ddd0"/>
@@ -92,6 +86,7 @@
       <stop offset="0.45" stop-color="#9bea18" />
       <stop offset="1" stop-color="#b8e600" />
     </linearGradient>
+
   </defs>
 
   <!-- transparent canvas: intentionally no full-canvas background -->
@@ -183,7 +178,7 @@
   -->
 
 <g id="jftl-wordmark"
-   transform="translate(610 200) scale(1.7)">
+   transform="translate(610 200) scale(1.7)" >
   <path id="glyph-J"
         d="M 118 48 L 85 48 L 82 51 L 82 168 L 81 169 L 81 174 L 80 175 L 79 180 L 76 184 L 76 185 L 73 188 L 72 188 L 69 191 L 67 191 L 64 193 L 60 193 L 59 194 L 46 194 L 45 193 L 38 193 L 37 192 L 33 192 L 32 191 L 29 191 L 27 193 L 26 195 L 26 197 L 25 198 L 25 201 L 24 202 L 24 205 L 23 206 L 23 209 L 22 210 L 22 213 L 21 214 L 21 217 L 20 218 L 20 221 L 19 222 L 19 224 L 21 226 L 24 226 L 25 227 L 30 227 L 31 228 L 38 228 L 39 229 L 46 229 L 47 230 L 69 230 L 70 229 L 76 229 L 77 228 L 80 228 L 81 227 L 85 227 L 86 226 L 88 226 L 98 221 L 100 219 L 101 219 L 109 211 L 109 210 L 112 207 L 117 197 L 117 195 L 119 191 L 119 188 L 120 187 L 120 181 L 121 180 L 121 51 Z"
         fill="url(#gradJ)"
@@ -220,7 +215,8 @@
 
   <!-- separator -->
   <rect x="104" y="675" width="1400" height="6" rx="3"
-        fill="url(#cyanGreen)"/>
+        fill="url(#cyanGreen)"
+        />
 
   <!-- subtitle -->
   <text x="102" y="797"
